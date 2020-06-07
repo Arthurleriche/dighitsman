@@ -5,8 +5,8 @@ import { history } from 'history';
 
 
 import Landing from './Landing'
-import Playlists from './Playlists'
-import Users from './Users'
+import SearchPage from './SearchPage'
+
 
 export default class App extends React.Component {
   render() {
@@ -14,8 +14,7 @@ export default class App extends React.Component {
       <div>
          <Router history={history}>
            <Route path='/dighit/:userId/' exact component={Landing} />
-           <Route path='/dighit/:userId/playlist' component={Playlists} />
-           <Route path='/dighit/:userId/users' component={Users} />
+           <Route path='/dighit/:userId/search' component={SearchPage} />
         </Router>
       </div>
     )

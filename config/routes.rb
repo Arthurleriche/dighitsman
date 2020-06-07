@@ -9,8 +9,7 @@ Rails.application.routes.draw do
     end
   end
   get 'dighit/:id', to: 'pages#dighit', as: :dighit
-  get 'dighit/:id/playlist', to: 'pages#dighit'
-  get 'dighit/:id/Users', to: 'pages#dighit'
+  get 'dighit/:id/search', to: 'pages#dighit'
 
   namespace :api do
     namespace :v1 do
