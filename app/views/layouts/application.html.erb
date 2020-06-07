@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dighitsman</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-eval': false %>
+  </head>
+
+  <body>
+    <%= render 'shared/navbar' %>
+    <%= yield %>
+        <%= javascript_pack_tag 'application' %>
+
+  </body>
+</html>

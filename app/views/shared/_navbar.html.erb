@@ -1,0 +1,19 @@
+<div class='navbar'>
+    <% if user_signed_in? %>
+      <div id='navbarhome'>
+        <%= link_to 'home', dighit_path(current_user) %>
+      </div>
+      <div id='navbarlog'>
+        <div id='navbarlogin'>
+          <%= button_to 'Exit', destroy_user_session_path, method: :delete %>
+        </div>
+      </div>
+    <% else %>
+      <div id='navbarhome'>
+      </div>
+      <div>
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      </div>
+    <% end %>
+</div>
+

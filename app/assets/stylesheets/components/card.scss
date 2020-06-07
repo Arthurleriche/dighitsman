@@ -1,0 +1,26 @@
+#section{
+  height: 300px;
+  background-color: #414650;
+  overflow: scroll;
+  margin-top: 30px;
+}
+
+#card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  padding: auto;
+  text-align: center;
+}
+
+#card-playlist{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items:center
+}
+
+#title{
+  text-align: center;
+}
