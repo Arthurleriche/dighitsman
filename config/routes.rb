@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :playlists, only: [:index, :show, :create]
       get '/:id/playlists', to: 'playlists#my_playlists'
       resources :songs, only: [:index, :show, :create, :destroy]
+      get '/:id/songs', to: 'songs#my_songs'
     end
   end
   devise_for :users

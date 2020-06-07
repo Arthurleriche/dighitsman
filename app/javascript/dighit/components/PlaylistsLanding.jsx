@@ -9,7 +9,7 @@ const [playlists, setPlaylists] = useState([])
   useEffect(() => {
     const url = `/api/v1/${props.id}/playlists`
     axios(url)
-      .then(res => console.log(res))
+      .then(res => setPlaylists(res.data.data))
       .catch()
      },[props.id])
 

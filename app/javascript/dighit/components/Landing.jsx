@@ -35,6 +35,9 @@ export default class Landing extends React.Component {
         <div id="section">
           <PlaylistsLanding id={this.state.id}/>
         </div>
+        <div id="section">
+          <SongsLanding id={this.state.id}/>
+        </div>
       </div>
     )
   }

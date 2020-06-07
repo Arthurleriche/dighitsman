@@ -11,6 +11,11 @@ class Api::V1::SongsController < ApplicationController
     render json: song
   end
 
+  def my_songs
+    songs = Song.where(user_id: params[:id])
+    render json: songs
+  end
+
   def create
     song = Song.create(song_params)
 

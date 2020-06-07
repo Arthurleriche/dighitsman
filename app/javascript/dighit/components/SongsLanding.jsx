@@ -9,7 +9,7 @@ const [songs, setSongs] = useState([])
   useEffect(() => {
     const url = `/api/v1/${props.id}/songs`
     axios(url)
-      .then(res => setSongs(res.data.data))
+      .then(res => setSongs(res.data))
       .catch()
      },[props.id])
 
@@ -17,7 +17,7 @@ const [songs, setSongs] = useState([])
     return songs.map(song => {
       return (
         <div key={song.id} id="card-playlist">
-          <h3>{song.attributes.name}</h3>
+          <h3>{song.title}</h3>
         </div>
       );
     });

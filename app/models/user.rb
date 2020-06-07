@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :playlists
-  has_many :songs, through: :usersong
+  has_many :songs
 end

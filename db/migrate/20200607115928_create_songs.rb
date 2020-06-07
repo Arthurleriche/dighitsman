@@ -3,9 +3,11 @@ class CreateSongs < ActiveRecord::Migration[6.0]
     create_table :songs do |t|
       t.string :title
       t.string :description
-      t.integer :score
+      t.string :score
       t.string :url
-      t.belongs_to :playlist, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
+      t.references :playlist, null: false, foreign_key: true
+
       t.timestamps
     end
   end

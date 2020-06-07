@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_07_113936) do
+ActiveRecord::Schema.define(version: 2020_06_07_115928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "playlist_songs", force: :cascade do |t|
-    t.bigint "playlist_id", null: false
-    t.bigint "song_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["playlist_id"], name: "index_playlist_songs_on_playlist_id"
-    t.index ["song_id"], name: "index_playlist_songs_on_song_id"
-  end
 
   create_table "playlists", force: :cascade do |t|
     t.string "name"
@@ -36,12 +27,14 @@ ActiveRecord::Schema.define(version: 2020_06_07_113936) do
   create_table "songs", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.integer "score"
+    t.string "score"
     t.string "url"
+    t.bigint "user_id", null: false
     t.bigint "playlist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["playlist_id"], name: "index_songs_on_playlist_id"
+    t.index ["user_id"], name: "index_songs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,19 +49,7 @@ ActiveRecord::Schema.define(version: 2020_06_07_113936) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "usersongs", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "song_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["song_id"], name: "index_usersongs_on_song_id"
-    t.index ["user_id"], name: "index_usersongs_on_user_id"
-  end
-
-  add_foreign_key "playlist_songs", "playlists"
-  add_foreign_key "playlist_songs", "songs"
   add_foreign_key "playlists", "users"
   add_foreign_key "songs", "playlists"
-  add_foreign_key "usersongs", "songs"
-  add_foreign_key "usersongs", "users"
+  add_foreign_key "songs", "users"
 end
