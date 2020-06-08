@@ -1,5 +1,6 @@
 import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+import history from 'history'
 
 
 
@@ -13,7 +14,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Stand />
-         <Router>
+         <Router history={history}>
            <Route path='/dighit/:userId/' exact component={Landing} />
            <Route path='/dighit/:userId/search' component={SearchPage} />
         </Router>
