@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import ReactPlayer from 'react-player';
+
 
 
 const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) => {
@@ -13,7 +15,7 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) =
     score: null
     })
 
-  const player = `https://youtube.com/embed/${selectedVideo}?autoplay=1`
+  const player = `https://youtube.com/embed/${selectedVideo}`
   const test = console.log(id)
   const user_id = id
 
@@ -44,7 +46,13 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) =
         </div>
         <div id='card'>
           <div id="card-playlist">
-            <iframe src={player} allow='autoplay; encrypted-media'/>
+            <ReactPlayer
+              url={player}
+              playing={true}
+              width='300px'
+              height='300px'
+              controls={true}
+            />
           </div>
           <button onClick={handleSubmit}>ajoute moi a ta playlist</button>
         </div>
