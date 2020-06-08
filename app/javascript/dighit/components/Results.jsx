@@ -1,15 +1,10 @@
 import React from 'react'
+import Video from './Video'
 
-const Results = (props) => {
-
-  const list = props.video.map(data => {
-    return (
-    <div key={data.snippet.title} id="card-playlist">
-      <h3>{data.snippet.title}</h3>
-    </div>
-    )
+const Results = ({videos, selectedVideo}) => {
+  const list = videos.map(data => {
+    return <Video video={data} selectedVideo={selectedVideo} />
   })
-
 
   return (
     <div id="section">

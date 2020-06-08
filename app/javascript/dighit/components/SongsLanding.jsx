@@ -18,6 +18,7 @@ const [songs, setSongs] = useState([])
       return (
         <div key={song.id} id="card-playlist">
           <h3>{song.title}</h3>
+          <img src={song.img}/>
         </div>
       );
     });
