@@ -7,11 +7,12 @@ const PlaylistLanding = (props) => {
 const [playlists, setPlaylists] = useState([])
 
   useEffect(() => {
+    setPlaylists(props.playlists)
     const url = `/api/v1/${props.id}/playlists`
     axios(url)
       .then(res => setPlaylists(res.data.data))
       .catch()
-     },[props.id])
+     },[props.playlists])
 
   const list = () => {
     return playlists.map(playlist => {

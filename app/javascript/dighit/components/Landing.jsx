@@ -12,7 +12,9 @@ export default class Landing extends React.Component {
     super(props)
     this.state = {
       id: null,
-      playlists: []
+      playlists: [],
+      songs: []
+
 
     };
   }
@@ -21,6 +23,17 @@ export default class Landing extends React.Component {
     let id = this.props.match.params
     id = id.userId
     this.setState({id: id})
+    const url = `/api/v1/${this.state.id}/playlists`
+    axios(url)
+      .then(res => this.setState({playlists: res.data.data}))
+      .catch()
+    const url2 = `/api/v1/${this.props.id}/songs`
+    axios(url2)
+      .then(res => this.setState({songs: res.data}))
+      .catch()
+  }
+
+  componentDidUpdate(){
   }
 
 
@@ -33,10 +46,16 @@ export default class Landing extends React.Component {
           <Decouvrir />
         </div>
         <div id="section">
-          <PlaylistsLanding id={this.state.id}/>
+          <PlaylistsLanding
+            id={this.state.id}
+            playlists={this.state.playlists}
+          />
         </div>
         <div id="section">
-          <SongsLanding id={this.state.id}/>
+          <SongsLanding
+            id={this.state.id}
+            songs={this.state.songs}
+          />
         </div>
       </div>
     )

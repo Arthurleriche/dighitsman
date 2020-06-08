@@ -7,11 +7,13 @@ const SongsLanding = (props) => {
 const [songs, setSongs] = useState([])
 
   useEffect(() => {
+    setSongs(props.songs)
     const url = `/api/v1/${props.id}/songs`
     axios(url)
       .then(res => setSongs(res.data))
       .catch()
-     },[props.id])
+
+     },[props.songs])
 
   const list = () => {
     return songs.map(song => {
@@ -27,7 +29,7 @@ const [songs, setSongs] = useState([])
   return (
     <div id="section">
       <div id="title">
-        <h2>mes son</h2>
+        <h2>mes sons</h2>
       </div>
       <div id='card'>
         {list()}

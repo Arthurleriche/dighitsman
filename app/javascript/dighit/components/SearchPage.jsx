@@ -39,6 +39,7 @@ export default class SearchPage extends React.Component {
   addSong = (params) => {
     console.log('je suis dans addSong')
    axios.post('/api/v1/songs', params);
+   alert(`you add ${params.title}`)
     }
 
 

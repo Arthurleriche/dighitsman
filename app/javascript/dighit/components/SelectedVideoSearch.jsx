@@ -13,7 +13,7 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) =
     score: null
     })
 
-  const player = `https://youtube.com/embed/${selectedVideo}`
+  const player = `https://youtube.com/embed/${selectedVideo}?autoplay=1`
   const test = console.log(id)
   const user_id = id
 
@@ -44,7 +44,7 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) =
         </div>
         <div id='card'>
           <div id="card-playlist">
-            <iframe src={player}/>
+            <iframe src={player} allow='autoplay; encrypted-media'/>
           </div>
           <button onClick={handleSubmit}>ajoute moi a ta playlist</button>
         </div>
