@@ -23,11 +23,11 @@ export default class Landing extends React.Component {
     let id = this.props.match.params
     id = id.userId
     this.setState({id: id})
-    const url = `/api/v1/${this.state.id}/playlists`
+    const url = `https://dighits.herokuapp.com/api/v1/${this.state.id}/playlists`
     axios(url)
       .then(res => this.setState({playlists: res.data.data}))
       .catch()
-    const url2 = `/api/v1/${this.props.id}/songs`
+    const url2 = `https://dighits.herokuapp.com/api/v1/${this.props.id}/songs`
     axios(url2)
       .then(res => this.setState({songs: res.data}))
       .catch()

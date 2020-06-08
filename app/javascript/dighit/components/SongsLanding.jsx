@@ -36,7 +36,6 @@ const [songs, setSongs] = useState([])
       </div>
     </div>
   )
-
 }
 
 export default SongsLanding

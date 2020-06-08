@@ -15,7 +15,6 @@ export default class SearchPage extends React.Component {
   }
 
   componentDidMount(){
-
     let id = this.props.match.params
     id = id.userId
     this.setState({id: id})
@@ -38,7 +37,7 @@ export default class SearchPage extends React.Component {
 
   addSong = (params) => {
     console.log('je suis dans addSong')
-   axios.post('/api/v1/songs', params);
+   axios.post('https://dighits.herokuapp.com/api/v1/songs', params);
    alert(`you add ${params.title}`)
     }
 
