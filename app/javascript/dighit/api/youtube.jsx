@@ -8,7 +8,7 @@ export default axios.create({
 
 export const baseParams = {
   part: "snippet",
-  maxResults: 200,
+  maxResults: 50,
   key: KEY
 };
 

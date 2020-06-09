@@ -16,7 +16,6 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) =
     })
 
   const player = `https://youtube.com/embed/${selectedVideo}`
-  const test = console.log(id)
   const user_id = id
 
   useEffect(() => {

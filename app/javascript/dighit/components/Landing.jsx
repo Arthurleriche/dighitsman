@@ -33,11 +33,6 @@ export default class Landing extends React.Component {
       .catch()
   }
 
-  componentDidUpdate(){
-  }
-
-
-
   render() {
     return (
       <div>

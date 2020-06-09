@@ -11,8 +11,6 @@ const Decouvrir = (props) => {
      .catch()
   }, []);
 
-  console.log()
-
   const list = () => {
     return decouvrir.map(playlist => {
       return (

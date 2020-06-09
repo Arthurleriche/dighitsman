@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   get 'dighit/:id', to: 'pages#dighit', as: :dighit
   get 'dighit/:id/search', to: 'pages#dighit'
+  get 'dighit/:id/video', to: 'pages#dighit'
 
   namespace :api do
     namespace :v1 do
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
       get '/:id/playlists', to: 'playlists#my_playlists'
       resources :songs, only: [:index, :show, :create, :destroy]
       get '/:id/songs', to: 'songs#my_songs'
+      get '/resources/:resource_type(/:type)', to: "songs#song_cloudinary"
     end
   end
   devise_for :users
