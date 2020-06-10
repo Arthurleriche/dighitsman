@@ -30,8 +30,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'fast_jsonapi'
 gem 'rack-cors'
-gem 'cloudinary'
+
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary', '~> 1.12.0'
 
 
 # Reduces boot times through caching; required in config/boot.rb

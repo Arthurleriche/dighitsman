@@ -19,7 +19,6 @@ Rails.application.routes.draw do
       get '/:id/playlists', to: 'playlists#my_playlists'
       resources :songs, only: [:index, :show, :create, :destroy]
       get '/:id/songs', to: 'songs#my_songs'
-      get '/resources/:resource_type(/:type)', to: "songs#song_cloudinary"
     end
   end
   devise_for :users

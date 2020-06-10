@@ -26,13 +26,6 @@ class Api::V1::SongsController < ApplicationController
     end
   end
 
-  def song_cloudinary
-    Cloudinary::Api.resources
-
-      # :cloud_name => "dighists",
-      # :api_key => "675944252314953",
-      # :api_secret => "oWH5VzqbJufxmC0Z6TtVq45brMQ"
-  end
 
   def destroy
     song = Song.find(id = params[:id])

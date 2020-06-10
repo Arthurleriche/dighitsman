@@ -5,14 +5,21 @@ import Search from './search'
 import Results from './Results'
 import youtube, { baseParams } from '../api/youtube.jsx'
 import SelectedVideoSearch from './SelectedVideoSearch'
+// import Popup from './Playlists/Popup'
 
 export default class SearchPage extends React.Component {
-  state = {
+  constructor(props){
+  super(props)
+  this.state = {
     videos:[],
     selectedVideo: '',
     infosSelectedVideo:[null],
-    id: null
+    id: null,
+    showPopup: false
   }
+  this.togglePopup = this.togglePopup.bind(this)
+  }
+
 
   componentDidMount(){
     let id = this.props.match.params
@@ -40,7 +47,9 @@ export default class SearchPage extends React.Component {
    alert(`you add ${params.title}`)
     }
 
-
+  togglePopup() {
+    this.setState({ showPopup: !this.state.showPopup });
+  }
 
   render() {
     return (
