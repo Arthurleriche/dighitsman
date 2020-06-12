@@ -5,7 +5,10 @@ import Search from './search'
 import Results from './Results'
 import youtube, { baseParams } from '../api/youtube.jsx'
 import SelectedVideoSearch from './SelectedVideoSearch'
-// import Popup from './Playlists/Popup'
+import SelectedMaVideoSearch from './SelectedMaVideoSearch'
+import AddVideoPopUp from './Popup/AddVideoPopUp'
+import SongsLanding from './SongsLanding'
+import MesSons from './SearchPage/MesSons'
 
 export default class SearchPage extends React.Component {
   constructor(props){
@@ -13,9 +16,12 @@ export default class SearchPage extends React.Component {
   this.state = {
     videos:[],
     selectedVideo: '',
+    selectedMaVideo: '',
     infosSelectedVideo:[null],
+    infosSelectedMaVideo:[null],
     id: null,
-    showPopup: false
+    showPopup: false,
+    load: true
   }
   this.togglePopup = this.togglePopup.bind(this)
   }
@@ -37,39 +43,83 @@ export default class SearchPage extends React.Component {
     this.setState({ videos: response.data.items })
   }
 
+  selectedMaVideo = (video) => {
+    console.log(video.url)
+    this.setState({ selectedMaVideo: video.url})
+    console.log(this.state.selectedMaVideo)
+    this.setState({ infosSelectedMaVideo: video })
+    this.setState({ selectedVideo: '' })
+    this.setState({ infosSelectedVideo: [null] })
+  }
+
   selectedVideo = (video) => {
     this.setState({ selectedVideo: video.id.videoId })
     this.setState({ infosSelectedVideo: video.snippet })
+    this.setState({ selectedMaVideo: '' })
+    this.setState({ infosSelectedMaVideo: [null] })
+
   }
 
   addSong = (params) => {
    axios.post('/api/v1/songs', params);
    alert(`you add ${params.title}`)
+   this.setState({ load: !this.state.load})
     }
 
   togglePopup() {
-    this.setState({ showPopup: !this.state.showPopup });
+    this.setState({ showPopup: !this.state.showPopup })
+    console.log(this.state.showPopup);
   }
+
 
   render() {
     return (
       <div>
+        <button onClick={this.togglePopup}>rajoute un son ici</button>
+        {this.state.showPopup ?
+          <AddVideoPopUp
+            text='Click "Close Button" to hide popup'
+            closePopup={this.togglePopup}
+            id={this.state.id}
+            addSong={this.addSong}
+          />
+          : null
+        }
           <Search searchFunction={this.searchFunction}/>
           {this.state.selectedVideo === '' ? <div></div> :
             <div id="section">
               <SelectedVideoSearch
                 selectedVideo={this.state.selectedVideo}
                 infosSelectedVideo={this.state.infosSelectedVideo}
-                addSong={this.addSong}
                 id={this.state.id}
+                addSong={this.addSong}
               />
             </div>
           }
+          {this.state.selectedMaVideo === '' ? <div></div> :
+            <div id="section">
+              <SelectedMaVideoSearch
+                infosSelectedMaVideo={this.state.infosSelectedMaVideo}
+                selectedMaVideo={this.state.selectedMaVideo}
+              />
+            </div>
+          }
+        {this.state.videos.length === 0 ? <div></div>
+        :
+          <div id="section">
+              <Results
+                videos={this.state.videos}
+                selectedVideo={this.selectedVideo}
+              />
+          </div>
+        }
         <div id="section">
-          <Results
-            videos={this.state.videos}
-            selectedVideo={this.selectedVideo}
-             />
+          <MesSons
+            id={this.state.id}
+            addSong={this.addSong}
+            load={this.state.load}
+            selectedMaVideo={this.selectedMaVideo}
+          />
         </div>
       </div>
     )

@@ -15,6 +15,7 @@ const VideoTest2 = () => {
       const file = e.target.files[0];
       const data = new FormData();
       data.append('file', file);
+      data.append('user_id', 1)
       data.append('upload_preset', 'koiahkt5');
       console.log(data);
       setLoad(true)

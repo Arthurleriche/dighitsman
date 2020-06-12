@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 
 import Decouvrir from './Decouvrir'
@@ -14,8 +15,6 @@ export default class Landing extends React.Component {
       id: null,
       playlists: [],
       songs: []
-
-
     };
   }
 
@@ -36,7 +35,8 @@ export default class Landing extends React.Component {
   render() {
     return (
       <div>
-        <h1>je suis landing page</h1>
+        <h1>landing page</h1>
+
         <div id="section">
           <Decouvrir />
         </div>

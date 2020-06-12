@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import axios from 'axios'
 
-import Popup from './Playlists/Popup'
+import Popup from './Popup/Popup'
 
 const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) => {
 
@@ -12,13 +12,13 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) =
     description: '',
     img: '',
     user_id: null,
-    playlists_id: 1,
+    playlist_id: 1,
     score: null
     })
 
   const [playlist, setPlaylist] = useState(null)
   const [playlists, setPlaylists] = useState([])
-  const [tooglePopUp, setTooglePopUp] = useState(false)
+  const [togglePopUp, setTogglePopUp] = useState(false)
   const player = `https://youtube.com/embed/${selectedVideo}`
   const user_id = id
 
@@ -26,20 +26,19 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) =
   axios.get(`/api/v1/${id}/playlists`)
     .then(res => setPlaylists(res.data.data))
     .then(console.log(playlists))
-   }, [tooglePopUp])
+   }, [togglePopUp, playlist])
 
   useEffect(() => {
     setAddNewSong({
-      url: {selectedVideo},
+      url: selectedVideo,
       title: `${infosSelectedVideo.title}`,
       description: `${infosSelectedVideo.description}`,
       img: `${infosSelectedVideo.thumbnails.high.url}`,
       user_id: user_id,
       playlist_id: playlist,
-      score: 0
+      score: 0,
     })
-
-  },[playlist])
+  },[selectedVideo, playlists])
 
 const validatePlaylist = (e) => {
 
@@ -54,12 +53,11 @@ const validatePlaylist = (e) => {
 
   const selecPlaylist = (playlist) => {
     setPlaylist(playlist)
+    console.log(playlist)
   }
 
-  const tooglePopupFunction = () => {
-    console.log('tooglePopUp')
-    console.log(tooglePopUp)
-    setTooglePopUp(!tooglePopUp);
+  const togglePopupFunction = () => {
+    setTogglePopUp(!togglePopUp);
   }
 
   const listOfPlaylits = playlists.map(data => {
@@ -71,15 +69,6 @@ const validatePlaylist = (e) => {
   } else {
     return (
       <div id="section">
-      <button onClick={tooglePopupFunction}>click ici pour rajouter une playlist</button>
-        {tooglePopUp ?
-          <Popup
-            text='Click "Close Button" to hide popup'
-            closePopup={tooglePopupFunction}
-            id={user_id}
-          />
-          : null
-        }
         <div id="title">
           <h2>{infosSelectedVideo.title}</h2>
         </div>
@@ -96,6 +85,15 @@ const validatePlaylist = (e) => {
           <button onClick={handleSubmit}>ajoute moi a ta playlist</button>
           <div>
           {listOfPlaylits}
+          <button onClick={togglePopupFunction}>click ici pour rajouter une playlist</button>
+        {togglePopUp ?
+          <Popup
+            text='Click "Close Button" to hide popup'
+            closePopup={togglePopupFunction}
+            id={user_id}
+          />
+          : null
+        }
           </div>
         </div>
       </div>

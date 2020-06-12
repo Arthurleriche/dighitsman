@@ -16,7 +16,6 @@ export default class App extends React.Component {
          <Router history={history}>
            <Route path='/dighit/:userId/' exact component={Landing} />
            <Route path='/dighit/:userId/search' component={SearchPage} />
-           <Route path='/dighit/:userId/video' component={VideoTest2} />
         </Router>
       </div>
     )

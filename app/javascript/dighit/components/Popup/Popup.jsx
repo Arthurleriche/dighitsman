@@ -12,7 +12,7 @@ const Popup = (props) =>  {
     setPlaylist({
       user_id: props.user_id,
     })
-  }, [props.id])
+  }, [props.id, playlist])
 
   const createPlaylist = () => {
     console.log(playlist)
@@ -20,7 +20,7 @@ const Popup = (props) =>  {
 
     alert('tu viens de creer une playlist')
     console.log(props.id)
-
+    props.closePopup()
   }
 
   return (

@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const Video = ({video, selectedVideo}) => {
+const VideoYoutube = ({video, selectedVideo}) => {
 
 
   return (
@@ -12,4 +12,4 @@ const Video = ({video, selectedVideo}) => {
   )
 }
 
-export default Video
+export default VideoYoutube

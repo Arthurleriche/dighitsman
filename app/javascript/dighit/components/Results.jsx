@@ -1,9 +1,9 @@
 import React from 'react'
-import Video from './Video'
+import VideoYoutube from './VideoYoutube'
 
 const Results = ({videos, selectedVideo}) => {
   const list = videos.map(data => {
-    return <Video video={data} selectedVideo={selectedVideo} />
+    return <VideoYoutube video={data} selectedVideo={selectedVideo} />
   })
 
   return (
