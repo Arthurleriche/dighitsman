@@ -44,9 +44,7 @@ export default class SearchPage extends React.Component {
   }
 
   selectedMaVideo = (video) => {
-    console.log(video.url)
     this.setState({ selectedMaVideo: video.url})
-    console.log(this.state.selectedMaVideo)
     this.setState({ infosSelectedMaVideo: video })
     this.setState({ selectedVideo: '' })
     this.setState({ infosSelectedVideo: [null] })
@@ -61,9 +59,10 @@ export default class SearchPage extends React.Component {
   }
 
   addSong = (params) => {
+   this.setState({ load: !this.state.load})
+   console.log(this.state.load)
    axios.post('/api/v1/songs', params);
    alert(`you add ${params.title}`)
-   this.setState({ load: !this.state.load})
     }
 
   togglePopup() {
@@ -83,34 +82,41 @@ export default class SearchPage extends React.Component {
             id={this.state.id}
             addSong={this.addSong}
           />
-          : null
+        :
+          null
         }
-          <Search searchFunction={this.searchFunction}/>
-          {this.state.selectedVideo === '' ? <div></div> :
-            <div id="section">
-              <SelectedVideoSearch
-                selectedVideo={this.state.selectedVideo}
-                infosSelectedVideo={this.state.infosSelectedVideo}
-                id={this.state.id}
-                addSong={this.addSong}
-              />
-            </div>
-          }
-          {this.state.selectedMaVideo === '' ? <div></div> :
-            <div id="section">
-              <SelectedMaVideoSearch
-                infosSelectedMaVideo={this.state.infosSelectedMaVideo}
-                selectedMaVideo={this.state.selectedMaVideo}
-              />
-            </div>
-          }
-        {this.state.videos.length === 0 ? <div></div>
+        <Search searchFunction={this.searchFunction}/>
+        {this.state.selectedVideo === '' ?
+          <div></div>
         :
           <div id="section">
-              <Results
-                videos={this.state.videos}
-                selectedVideo={this.selectedVideo}
-              />
+            <SelectedVideoSearch
+              selectedVideo={this.state.selectedVideo}
+              infosSelectedVideo={this.state.infosSelectedVideo}
+              id={this.state.id}
+              addSong={this.addSong}
+              load={this.state.load}
+            />
+          </div>
+        }
+        {this.state.selectedMaVideo === '' ?
+          <div></div>
+        :
+          <div id="section">
+            <SelectedMaVideoSearch
+              infosSelectedMaVideo={this.state.infosSelectedMaVideo}
+              selectedMaVideo={this.state.selectedMaVideo}
+            />
+          </div>
+          }
+        {this.state.videos.length === 0 ?
+          <div></div>
+        :
+          <div id="section">
+            <Results
+              videos={this.state.videos}
+              selectedVideo={this.selectedVideo}
+            />
           </div>
         }
         <div id="section">

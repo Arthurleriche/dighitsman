@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import Popup from './Popup/Popup'
 
-const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) => {
+const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong, load}) => {
 
   const [addNewSong, setAddNewSong] = useState({
     url: '',
@@ -26,7 +26,7 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) =
   axios.get(`/api/v1/${id}/playlists`)
     .then(res => setPlaylists(res.data.data))
     .then(console.log(playlists))
-   }, [togglePopUp, playlist])
+   }, [togglePopUp, playlist, load])
 
   useEffect(() => {
     setAddNewSong({
