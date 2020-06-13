@@ -15,11 +15,9 @@ const Popup = (props) =>  {
   }, [props.id, playlist])
 
   const createPlaylist = () => {
-    console.log(playlist)
     axios.post('/api/v1/playlists', playlist)
 
     alert('tu viens de creer une playlist')
-    console.log(props.id)
     props.closePopup()
   }
 
@@ -28,7 +26,7 @@ const Popup = (props) =>  {
       <div className='popup\_inner'>
         <input name="name" type="text" value={playlist.name} onChange={(e) => setPlaylist({ name: e.target.value, user_id: props.id})}/>
         <button onClick={props.closePopup}>revenir ecouter</button>
-        <button onClick={createPlaylist}>ajouter une playlist</button>
+        <button onClick={createPlaylist} >ajouter une playlist</button>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import Popup from './Popup/Popup'
 
-const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong, load}) => {
+const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) => {
 
   const [addNewSong, setAddNewSong] = useState({
     url: '',
@@ -19,6 +19,7 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong, lo
   const [playlist, setPlaylist] = useState(null)
   const [playlists, setPlaylists] = useState([])
   const [togglePopUp, setTogglePopUp] = useState(false)
+  const [load, setLoad] = useState(true)
   const player = `https://youtube.com/embed/${selectedVideo}`
   const user_id = id
 
@@ -26,7 +27,7 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong, lo
   axios.get(`/api/v1/${id}/playlists`)
     .then(res => setPlaylists(res.data.data))
     .then(console.log(playlists))
-   }, [togglePopUp, playlist, load])
+   }, [load, togglePopUp, playlist])
 
   useEffect(() => {
     setAddNewSong({
@@ -39,6 +40,11 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong, lo
       score: 0,
     })
   },[selectedVideo, playlists])
+
+  const handleLoad = () => {
+    setLoad(!load)
+    console.log(load)
+  }
 
 const validatePlaylist = (e) => {
 
@@ -91,6 +97,7 @@ const validatePlaylist = (e) => {
             text='Click "Close Button" to hide popup'
             closePopup={togglePopupFunction}
             id={user_id}
+            handleLoad={handleLoad}
           />
           : null
         }

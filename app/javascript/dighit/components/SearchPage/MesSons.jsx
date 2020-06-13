@@ -6,7 +6,9 @@ import MaVideo from './MaVideo'
 const MesSons = ({id, addSong, selectedMaVideo, load}) => {
 
 const [songs, setSongs] = useState([])
+
 const url = `/api/v1/${id}/songs`
+
 
   useEffect(() => {
     axios(url)
@@ -14,10 +16,6 @@ const url = `/api/v1/${id}/songs`
       .catch()
       .then(console.log(load))
      },[load, id])
-
-  const test = () => {
-    console.log(songs)
-  }
 
   const list = songs.map(data => {
       return <MaVideo video={data} selectedMaVideo={selectedMaVideo} />

@@ -60,14 +60,13 @@ export default class SearchPage extends React.Component {
 
   addSong = (params) => {
    this.setState({ load: !this.state.load})
-   console.log(this.state.load)
    axios.post('/api/v1/songs', params);
    alert(`you add ${params.title}`)
     }
 
   togglePopup() {
     this.setState({ showPopup: !this.state.showPopup })
-    console.log(this.state.showPopup);
+    this.setState({ load: !this.state.load })
   }
 
 
