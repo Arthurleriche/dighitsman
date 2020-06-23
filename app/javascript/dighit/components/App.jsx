@@ -6,7 +6,7 @@ import { createBrowserHistory } from 'history'
 
 import Landing from './Landing'
 import SearchPage from './SearchPage'
-import VideoTest2 from './Cloudinary/VideoTest2'
+import PagePerso from './SearchPage/PagePerso'
 
 
 export default class App extends React.Component {
@@ -16,6 +16,7 @@ export default class App extends React.Component {
          <Router history={history}>
            <Route path='/dighit/:userId/' exact component={Landing} />
            <Route path='/dighit/:userId/search' component={SearchPage} />
+           <Route path='/dighit/:userId/landing' component={PagePerso} />
         </Router>
       </div>
     )

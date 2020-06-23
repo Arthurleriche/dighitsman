@@ -11,14 +11,15 @@ const AddVideoToPopUp = (props) =>  {
   const [user_id, setUser_id] = useState(props.id)
   const [score, setScore] = useState(0)
   const [addNewSong, setAddNewSong] = useState({
-    url: '',
+    cloud: '',
     title: '',
     description: '',
     img: '',
     user_id: null,
     playlist_id: 1,
     score: null,
-    img: ''
+    img: '',
+    url: ''
     })
 
   const uploadVideo = async (e) => {
@@ -51,13 +52,14 @@ const AddVideoToPopUp = (props) =>  {
 
   useEffect (() => {
     setAddNewSong({
-    url: url,
+    cloud: url,
     title: title,
     description: description,
     user_id: props.id,
     playlist_id: 1,
     score: score,
-    img:''
+    img:'',
+    url: ''
     })
   }, [description, url])
 
@@ -65,7 +67,6 @@ const AddVideoToPopUp = (props) =>  {
     if (url === "null") {
       alert('cela peut prendre quelque temps avant le chargement complet de la vidéo')
     } else {
-        console.log(addNewSong)
         e.preventDefault()
         props.addSong(addNewSong)
         props.closePopup()

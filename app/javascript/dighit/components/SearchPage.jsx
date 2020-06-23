@@ -21,7 +21,9 @@ export default class SearchPage extends React.Component {
     infosSelectedMaVideo:[null],
     id: null,
     showPopup: false,
-    load: true
+    loadplaylist: false,
+    loadsong: false,
+    playlists:[]
   }
   this.togglePopup = this.togglePopup.bind(this)
   }
@@ -31,6 +33,10 @@ export default class SearchPage extends React.Component {
     let id = this.props.match.params
     id = id.userId
     this.setState({id: id})
+    axios.get(`/api/v1/${id}/playlists`)
+    .then(res => this.setState({playlists:res.data.data}))
+    .then(console.log(this.state.playlists))
+
   }
 
   searchFunction = async (search) => {
@@ -59,16 +65,15 @@ export default class SearchPage extends React.Component {
   }
 
   addSong = (params) => {
-   this.setState({ load: !this.state.load})
-   axios.post('/api/v1/songs', params);
-   alert(`you add ${params.title}`)
-    }
+    axios.post('/api/v1/songs', params);
+    alert(`you add ${params.title}`)
 
-  togglePopup() {
-    this.setState({ showPopup: !this.state.showPopup })
-    this.setState({ load: !this.state.load })
+    this.setState({ loadsong: !this.state.loadsong })
   }
 
+  togglePopup = () => {
+    this.setState({ showPopup: !this.state.showPopup })
+  }
 
   render() {
     return (
@@ -94,7 +99,8 @@ export default class SearchPage extends React.Component {
               infosSelectedVideo={this.state.infosSelectedVideo}
               id={this.state.id}
               addSong={this.addSong}
-              load={this.state.load}
+              loadplaylist={this.state.loadplaylist}
+              playlistsitems={this.state.playlists}
             />
           </div>
         }
@@ -122,7 +128,7 @@ export default class SearchPage extends React.Component {
           <MesSons
             id={this.state.id}
             addSong={this.addSong}
-            load={this.state.load}
+            loadsong={this.state.loadsong}
             selectedMaVideo={this.selectedMaVideo}
           />
         </div>

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import Popup from './Popup/Popup'
 
-const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) => {
+const SelectedVideoSearch = ({ selectedVideo, infosSelectedVideo, id, addSong, playlistsitems}) => {
 
   const [addNewSong, setAddNewSong] = useState({
     url: '',
@@ -19,7 +19,8 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) =
   const [playlist, setPlaylist] = useState(null)
   const [playlists, setPlaylists] = useState([])
   const [togglePopUp, setTogglePopUp] = useState(false)
-  const [load, setLoad] = useState(true)
+  const [load, setLoad] = useState(1)
+  const [loadPlaylist, setLoadPlaylist] = useState(true)
   const player = `https://youtube.com/embed/${selectedVideo}`
   const user_id = id
 
@@ -27,7 +28,7 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) =
   axios.get(`/api/v1/${id}/playlists`)
     .then(res => setPlaylists(res.data.data))
     .then(console.log(playlists))
-   }, [load, togglePopUp, playlist])
+   }, [createPlaylist, id, load, loadPlaylist])
 
   useEffect(() => {
     setAddNewSong({
@@ -39,19 +40,27 @@ const SelectedVideoSearch = ({selectedVideo, infosSelectedVideo, id, addSong}) =
       playlist_id: playlist,
       score: 0,
     })
-  },[selectedVideo, playlists])
+  },[selectedVideo, playlists, playlist])
 
-  const handleLoad = () => {
-    setLoad(!load)
-    console.log(load)
-  }
+  // const handleLoad = () => {
+  //   setLoad(!load)
+  // }
 
 const validatePlaylist = (e) => {
-
   e.preventDefault()
-    addSong(addNewSong)
-    setPlaylist(null)
+  addSong(addNewSong)
+  setPlaylist(null)
 }
+
+
+
+const createPlaylist = (newPlaylist) => {
+    axios.post('/api/v1/playlists', newPlaylist)
+    alert('tu viens de creer une playlist')
+    togglePopupFunction()
+    setLoad(load + 1)
+    setLoadPlaylist(!loadPlaylist)
+  }
 
  const handleSubmit = (e) => {
   playlist === null ? alert(' !!!!!!!!!!! il te faut une playlist pour commencer !!!!!!!!!!!!!') : validatePlaylist(e)
@@ -59,7 +68,6 @@ const validatePlaylist = (e) => {
 
   const selecPlaylist = (playlist) => {
     setPlaylist(playlist)
-    console.log(playlist)
   }
 
   const togglePopupFunction = () => {
@@ -69,6 +77,7 @@ const validatePlaylist = (e) => {
   const listOfPlaylits = playlists.map(data => {
     return <p onClick={() => selecPlaylist(data.id)}>{data.attributes.name} </p>
  })
+
 
   if (selectedVideo === '') {
     return <div> selectionner une vidéo </div>
@@ -95,9 +104,8 @@ const validatePlaylist = (e) => {
         {togglePopUp ?
           <Popup
             text='Click "Close Button" to hide popup'
-            closePopup={togglePopupFunction}
             id={user_id}
-            handleLoad={handleLoad}
+            createPlaylist={createPlaylist}
           />
           : null
         }

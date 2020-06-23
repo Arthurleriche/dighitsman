@@ -12,7 +12,6 @@ const [songs, setSongs] = useState([])
     axios(url)
       .then(res => setSongs(res.data))
       .catch()
-
      },[props.songs])
 
   const list = () => {

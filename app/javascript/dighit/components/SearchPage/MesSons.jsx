@@ -14,7 +14,7 @@ const url = `/api/v1/${id}/songs`
     axios(url)
       .then(res => setSongs(res.data))
       .catch()
-      .then(console.log(load))
+      .then(console.log('je suis useeffectsongs'))
      },[load, id])
 
   const list = songs.map(data => {

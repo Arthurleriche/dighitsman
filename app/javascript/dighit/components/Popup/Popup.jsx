@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './style.css';
 import axios from 'axios'
 
-const Popup = (props) =>  {
+const Popup = ({id, closePopup, createPlaylist}) =>  {
   const [playlist, setPlaylist] = useState({
     name: "",
     user_id: null
@@ -10,23 +10,23 @@ const Popup = (props) =>  {
 
   useState(() => {
     setPlaylist({
-      user_id: props.user_id,
+      user_id: id,
     })
-  }, [props.id, playlist])
+  }, [id, playlist])
 
-  const createPlaylist = () => {
-    axios.post('/api/v1/playlists', playlist)
 
-    alert('tu viens de creer une playlist')
-    props.closePopup()
+
+  const newPlaylist = () => {
+    console.log(playlist)
+    createPlaylist(playlist)
   }
 
   return (
     <div className='popup'>
       <div className='popup\_inner'>
-        <input name="name" type="text" value={playlist.name} onChange={(e) => setPlaylist({ name: e.target.value, user_id: props.id})}/>
-        <button onClick={props.closePopup}>revenir ecouter</button>
-        <button onClick={createPlaylist} >ajouter une playlist</button>
+        <input name="name" type="text" value={playlist.name} onChange={(e) => setPlaylist({ name: e.target.value, user_id: id})}/>
+        <button onClick={closePopup}>revenir ecouter</button>
+        <button onClick={newPlaylist} >ajouter une playlist</button>
       </div>
     </div>
   );
