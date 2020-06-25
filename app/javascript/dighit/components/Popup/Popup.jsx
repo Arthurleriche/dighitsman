@@ -17,7 +17,6 @@ const Popup = ({id, closePopup, createPlaylist}) =>  {
 
 
   const newPlaylist = () => {
-    console.log(playlist)
     createPlaylist(playlist)
   }
 

@@ -6,7 +6,7 @@ import { createBrowserHistory } from 'history'
 
 import Landing from './Landing'
 import SearchPage from './SearchPage'
-import PagePerso from './SearchPage/PagePerso'
+import PagePerso from './PagePerso/PagePerso'
 
 
 export default class App extends React.Component {

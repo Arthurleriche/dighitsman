@@ -99,7 +99,9 @@ const createPlaylist = (newPlaylist) => {
           </div>
           <button onClick={handleSubmit}>ajoute moi a ta playlist</button>
           <div>
+          <div className="playlist">
           {listOfPlaylits}
+          </div>
           <button onClick={togglePopupFunction}>click ici pour rajouter une playlist</button>
         {togglePopUp ?
           <Popup

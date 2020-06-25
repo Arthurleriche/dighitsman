@@ -1,0 +1,48 @@
+#utilisateur{
+height: 350px;
+background-color: rgba(201, 196, 196, 0.3);
+color: white
+}
+
+#carteUtilisateur{
+  display: flex;
+}
+
+#cartePhoto{
+  width: 300px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#photo{
+  width: 170px;
+  height: 170px;
+  border-radius: 100%;
+
+}
+
+#infosUtilisateur{
+  display: flex;
+  align-items: center;
+  width: 800px;
+  height: 350px;
+
+}
+
+#contactUtilisateur{
+  width: 300px;
+  height: 350px;
+  display:flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  #button-pseudo{
+    margin-top: 116px;
+    width: 75%;
+    color:white;
+    background-color:#907EFF;
+    border-radius:13px;
+  }
+}
