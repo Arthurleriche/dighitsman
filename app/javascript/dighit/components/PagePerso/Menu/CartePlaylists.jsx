@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const CartePlaylists = ({ playlists }) => {
+const CartePlaylists = ({ playlists, selectedPlaylists}) => {
 
   const id = playlists.relationships.songs.data[0]
   const url = `/api/v1/songs/${id.id}`
@@ -15,7 +15,7 @@ const CartePlaylists = ({ playlists }) => {
    },[id])
 
   return (
-    <div id="carte-video">
+    <div onClick={() => selectedPlaylists(playlists)} id="carte-video">
       <div id="image">
         <img src={img} alt=""/>
       </div>

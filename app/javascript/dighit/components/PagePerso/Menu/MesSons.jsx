@@ -3,9 +3,9 @@ import axios from 'axios'
 
 import CarteVideo from './CarteVideo'
 
-const MesSons = ({ selectedVideo }) => {
+const MesSons = ({ selectedVideo, id }) => {
 
-  const url = `/api/v1/1/songs`
+  const url = `/api/v1/${id}/songs`
 
   const [songs, setSongs] = useState([])
 

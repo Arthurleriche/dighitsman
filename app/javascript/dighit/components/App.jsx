@@ -10,13 +10,17 @@ import PagePerso from './PagePerso/PagePerso'
 
 
 export default class App extends React.Component {
+  constructor(props){
+    super(props)
+  }
+
   render() {
     return (
       <div>
          <Router history={history}>
            <Route path='/dighit/:userId/' exact component={Landing} />
            <Route path='/dighit/:userId/search' component={SearchPage} />
-           <Route path='/dighit/:userId/landing' component={PagePerso} />
+           <Route path='/dighit/:userId/landing' render={ ({match}) => <PagePerso id={match.params.userId}/> } />
         </Router>
       </div>
     )

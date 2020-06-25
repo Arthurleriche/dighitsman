@@ -3,10 +3,7 @@ import ReactPlayer from 'react-player';
 
 const Lecteur = ({ video }) => {
 
-const player = `https://youtube.com/embed/${video.url}`
-
-  console.log(video)
-
+  const player = `https://youtube.com/embed/${video.url}`
 
   return (
     <div id="lecteur">
@@ -14,7 +11,7 @@ const player = `https://youtube.com/embed/${video.url}`
         url={player}
         playing={true}
         width='200px'
-        height= '100px'
+        height= '200px'
         controls={true}
       />
       <p>{video.title}</p>

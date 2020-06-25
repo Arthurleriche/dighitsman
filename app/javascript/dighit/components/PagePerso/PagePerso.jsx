@@ -10,7 +10,8 @@ import YoutubeVideo from './Youtube/YoutubeVideo';
 import Lecteur from '../Lecteur/Lecteur'
 
 
-const PagePerso = () =>  {
+const PagePerso = ({id}) =>  {
+
 
   const [menu, setMenu] = useState("sons");
   const [youtube, setYoutube] = useState([]);
@@ -49,9 +50,9 @@ const PagePerso = () =>  {
   const Menu = () => {
     switch(menu) {
       case "sons":
-        return <MesSons selectedVideo={selectedVideo}/>
+        return <MesSons selectedVideo={selectedVideo} id={id}/>
       case "playlists":
-        return <MesPlaylists/>
+        return <MesPlaylists selectedVideo={selectedVideo} id={id}/>
     };
   };
 
