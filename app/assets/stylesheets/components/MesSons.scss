@@ -1,7 +1,5 @@
 #mes-sons{
-  background-color: rgba(201, 196, 196, 0.5);
-  margin: 0;
-  width: 1000px;
+
 }
 
 // #mes-sons-listes{
@@ -14,10 +12,7 @@
 
 #mes-sons-liste{
   display: grid;
-  grid-template-columns: 200px 200px 200px 200px;
-  grid-gap: 10px;
-  margin: 0 auto;
-  max-width: 500;
-  justify-content:center
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  grid-gap: 18px;
 }
 

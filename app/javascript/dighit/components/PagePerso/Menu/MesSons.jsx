@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import CarteVideo from './CarteVideo'
 
-const MesSons = () => {
+const MesSons = ({ selectedVideo }) => {
 
   const url = `/api/v1/1/songs`
 
@@ -16,16 +16,14 @@ const MesSons = () => {
      },[])
 
   const list = songs.map((data) => {
-    return <CarteVideo songs={data} key={data.id} />
+    return <CarteVideo songs={data} key={data.id} selectedVideo={selectedVideo}/>
   })
 
   return(
     <div id="mes-sons">
       <h3 className="titre">Mes Sons</h3>
-
-          <div id="mes-sons-liste">
-            {list}
-
+        <div id="mes-sons-liste">
+          {list}
         </div>
     </div>
   )

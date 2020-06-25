@@ -2,6 +2,12 @@
   margin: auto 136px
 }
 
-.container-youtube-menu{
-  margin: auto 200px
+.container-menu{
+  margin: auto 32px;
+}
+
+.container-menu-youtube{
+  margin: auto 32px;
+  display: grid;
+  grid-template-columns:11fr 1fr;
 }

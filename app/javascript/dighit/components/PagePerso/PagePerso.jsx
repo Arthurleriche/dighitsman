@@ -8,16 +8,21 @@ import MesSons from './Menu/MesSons'
 import MesPlaylists from './Menu/MesPlaylists'
 import YoutubeVideo from './Youtube/YoutubeVideo';
 import Lecteur from '../Lecteur/Lecteur'
-import TestArray from './testarray'
 
 
 const PagePerso = () =>  {
 
   const [menu, setMenu] = useState("sons");
   const [youtube, setYoutube] = useState([]);
+  const [loadYoutube, setLoadYoutube] = useState(false)
+  const [video, setVideo] = useState("")
 
   const handleChange = (change) => {
     setMenu(change);
+  }
+
+  const selectedVideo = (selectedvideo) => {
+    setVideo(selectedvideo)
   }
 
   // useEffect(() => {
@@ -38,30 +43,38 @@ const PagePerso = () =>  {
       }
     })
     setYoutube(response.data.items);
+    setLoadYoutube(true)
   }
 
   const Menu = () => {
     switch(menu) {
       case "sons":
-        return <MesSons/>
+        return <MesSons selectedVideo={selectedVideo}/>
       case "playlists":
         return <MesPlaylists/>
     };
   };
 
+  const LecteurPlayer = video === "" ? <div></div> : <Lecteur video={video}/>
+
   return (
     <Fragment>
-      <Lecteur />
       <CarteUtilisateur />
+      {LecteurPlayer}
       <MenuPagePerso
         handleChange={handleChange}
         rechercheYoutube={rechercheYoutube}
       />
-      <div id="youtube-menu" className="container-youtube-menu">
-        {Menu()}
-        <YoutubeVideo youtube={youtube} />
-      </div>
-    <TestArray/>
+        {loadYoutube ?
+          <div className="container-menu-youtube">
+            {Menu()}
+            <YoutubeVideo youtube={youtube} selectedVideo={selectedVideo}/>
+          </div>
+        :
+          <div className="container-menu">
+            {Menu()}
+          </div>
+        }
     </Fragment>
   )
 }
