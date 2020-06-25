@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player';
 const Lecteur = ({ video }) => {
 
   const player = `https://youtube.com/embed/${video.url}`
-
+  console.log(video)
   return (
     <div id="lecteur">
       <ReactPlayer

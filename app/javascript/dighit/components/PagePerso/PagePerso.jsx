@@ -13,7 +13,7 @@ import Lecteur from '../Lecteur/Lecteur'
 const PagePerso = ({id}) =>  {
 
 
-  const [menu, setMenu] = useState("sons");
+  const [menu, setMenu] = useState("playlists");
   const [youtube, setYoutube] = useState([]);
   const [loadYoutube, setLoadYoutube] = useState(false)
   const [video, setVideo] = useState("")

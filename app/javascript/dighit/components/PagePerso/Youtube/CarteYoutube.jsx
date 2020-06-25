@@ -4,7 +4,7 @@ const CarteYoutube = ({ resultat, video, handleSelected }) => {
 
   useEffect(() => {
     video(resultat)
-  },[])
+  },[resultat])
 
   return (
     <div id="carte-youtube" onClick={handleSelected}>
