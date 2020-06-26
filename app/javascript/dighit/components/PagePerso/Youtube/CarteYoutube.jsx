@@ -39,6 +39,7 @@ const CarteYoutube = ({ resultat, video, handleSelected, id }) => {
       playlist_id: playlist,
       score: 0,
     })
+    console.log(song)
   },[playlist])
 
   const selectedPlaylist = (playlist_id) => {
@@ -46,7 +47,10 @@ const CarteYoutube = ({ resultat, video, handleSelected, id }) => {
   }
 
   const addVideoToPlaylist = () => {
+    console.log(song)
     axios.post('/api/v1/songs', song);
+    alert('add')
+
   }
 
   const listPlaylist = playlists.map((data) => {
