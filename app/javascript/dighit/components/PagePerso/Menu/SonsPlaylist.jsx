@@ -18,11 +18,9 @@ const SonsPlaylist = ({toutesLesPlaylists, playlist, id, selectedVideo, name}) =
     setSong(tri)
      },[playlist])
 
-  console.log(song)
-
-const listSon = song.map((data) => {
-  return <CarteVideo songs={data} key={data.id} selectedVideo={selectedVideo}/>
-})
+  const listSon = song.map((data) => {
+    return <CarteVideo songs={data} key={data.id} selectedVideo={selectedVideo}/>
+  })
 
   return (
         <Fragment>

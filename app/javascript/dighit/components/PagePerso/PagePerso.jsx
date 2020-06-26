@@ -58,7 +58,7 @@ const PagePerso = ({id}) =>  {
     };
   };
 
-  const LecteurPlayer = video === "" ? <div></div> : <Lecteur video={video}/>
+  const LecteurPlayer = video === "" ? <div></div> : <Lecteur video={video} id={id}/>
 
   return (
     <Fragment>
