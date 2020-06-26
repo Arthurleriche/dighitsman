@@ -58,8 +58,6 @@ const createPlaylist = (newPlaylist) => {
     axios.post('/api/v1/playlists', newPlaylist)
     alert('tu viens de creer une playlist')
     togglePopupFunction()
-    setLoad(load + 1)
-    setLoadPlaylist(!loadPlaylist)
   }
 
  const handleSubmit = (e) => {

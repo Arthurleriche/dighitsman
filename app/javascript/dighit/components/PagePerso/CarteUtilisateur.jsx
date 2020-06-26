@@ -1,7 +1,7 @@
 import React from 'react'
+import Popup from "reactjs-popup";
 
 import avatar from "../../../../assets/images/avatar.jpeg"
-
 
 const CarteUtilisateur = () => {
   return (
@@ -21,6 +21,9 @@ const CarteUtilisateur = () => {
         </div>
         <div id="contactUtilisateur">
           <button id="button-pseudo">suivre Pseudo</button>
+            <Popup trigger={<button> Trigger</button>} position="left">
+              <div id="popup-add-to-playlists"><h1>popup</h1></div>
+          </Popup>
         </div>
       </div>
     </div>

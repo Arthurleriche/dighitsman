@@ -9,6 +9,8 @@ import MesPlaylists from './Menu/MesPlaylists'
 import YoutubeVideo from './Youtube/YoutubeVideo';
 import Lecteur from '../Lecteur/Lecteur'
 
+import TestArray from './testarray'
+
 
 const PagePerso = ({id}) =>  {
 
@@ -69,13 +71,14 @@ const PagePerso = ({id}) =>  {
         {loadYoutube ?
           <div className="container-menu-youtube">
             {Menu()}
-            <YoutubeVideo youtube={youtube} selectedVideo={selectedVideo}/>
+            <YoutubeVideo youtube={youtube} selectedVideo={selectedVideo} id={id}/>
           </div>
         :
           <div className="container-menu">
             {Menu()}
           </div>
         }
+        <TestArray />
     </Fragment>
   )
 }
