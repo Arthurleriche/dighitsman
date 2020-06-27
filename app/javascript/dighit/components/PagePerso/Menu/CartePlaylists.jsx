@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import avatar from "../../../../../assets/images/avatar.jpeg"
+import vinyl from "../../../../../assets/images/VINYL.png"
 
 
 const CartePlaylists = ({ playlists, selectedPlaylists}) => {
@@ -16,7 +16,7 @@ const CartePlaylists = ({ playlists, selectedPlaylists}) => {
         .then(res => setImg(res.data.data.attributes.img))
         .catch()
   } else {
-    setImg(avatar)
+    setImg(vinyl)
     }
    },[playlists])
 
