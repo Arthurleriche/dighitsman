@@ -20,8 +20,6 @@ const CartePlaylists = ({ playlists, selectedPlaylists}) => {
     }
    },[playlists])
 
-
-console.log(playlists)
   return (
     <div onClick={() => selectedPlaylists(playlists)} id="carte-video">
       <div id="image">

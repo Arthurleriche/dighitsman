@@ -24,7 +24,6 @@ const MesPlaylists = ({selectedVideo, id }) => {
   const selectedPlaylists = (playlist) => {
     setPlaylist(playlist.id)
     setName(playlist.attributes.name)
-    console.log(playlist.attributes.name)
   }
 
   const list = playlists.map((data) => {

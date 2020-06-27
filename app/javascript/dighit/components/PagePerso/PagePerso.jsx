@@ -44,6 +44,7 @@ const PagePerso = ({id}) =>  {
         q: search
       }
     })
+    console.log(response)
     setYoutube(response.data.items);
     setLoadYoutube(true)
   }
