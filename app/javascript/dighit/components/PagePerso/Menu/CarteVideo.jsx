@@ -4,11 +4,11 @@ const CarteVideo = ({ songs, selectedVideo}) => {
   return (
     <div id="carte-video" onClick={() => selectedVideo(songs)}>
       <div id="image">
-        <img src={songs.img} alt=""/>
+        <img src={songs.attributes.img} alt=""/>
       </div>
       <div id="carte-description">
-        <p>{songs.title}</p>
-        <p>{songs.score}</p>
+        <p>{songs.attributes.title}</p>
+        <p>Note de la vidéo : {songs.attributes.avg_score}</p>
       </div>
     </div>
   )

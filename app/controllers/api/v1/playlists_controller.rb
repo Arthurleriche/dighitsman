@@ -22,7 +22,7 @@ class Api::V1::PlaylistsController < ApplicationController
   end
 
   def create
-    playlist = Playlist.create(playlist_params)
+    playlist = Playlist.new(playlist_params)
 
     if playlist.save
       render json: PlaylistSerializer.new(playlist).as_json
@@ -31,6 +31,15 @@ class Api::V1::PlaylistsController < ApplicationController
     end
   end
 
+  def destroy
+    playlist = Playlist.find(id = params[:id])
+
+    if playlist.destroy
+      head :no_content
+    else
+      render json: {error: playlist.errors.messages}, status: 422
+    end
+  end
 
   private
 

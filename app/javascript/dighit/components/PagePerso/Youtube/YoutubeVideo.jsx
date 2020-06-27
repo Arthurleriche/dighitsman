@@ -12,9 +12,11 @@ const YoutubeVideo = ({ youtube, selectedVideo, id}) => {
 
   const video = (song) => {
     setSelected({
-      url: song.id.videoId,
-      title: song.snippet.title,
-      description: song.snippet.description
+      attributes: {
+        url: song.id.videoId,
+        title: song.snippet.title,
+        description: song.snippet.description
+      }
     })
   }
 

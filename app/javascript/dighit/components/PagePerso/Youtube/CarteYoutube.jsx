@@ -31,15 +31,14 @@ const CarteYoutube = ({ resultat, video, handleSelected, id }) => {
 
   useEffect(() => {
     setSong({
+      avg_score: null,
       url: resultat.id.videoId,
       title: resultat.snippet.title,
       description: resultat.snippet.description,
       img: resultat.snippet.thumbnails.high.url,
       user_id: id,
       playlist_id: playlist,
-      score: 0,
     })
-    console.log(song)
   },[playlist])
 
   const selectedPlaylist = (playlist_id) => {

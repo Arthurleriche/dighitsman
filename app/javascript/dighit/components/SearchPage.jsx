@@ -8,7 +8,6 @@ import SelectedVideoSearch from './SelectedVideoSearch'
 import SelectedMaVideoSearch from './SelectedMaVideoSearch'
 import AddVideoPopUp from './Popup/AddVideoPopUp'
 import SongsLanding from './SongsLanding'
-import MesSons from './PagePerso/MesSons'
 
 export default class SearchPage extends React.Component {
   constructor(props){
@@ -125,12 +124,6 @@ export default class SearchPage extends React.Component {
           </div>
         }
         <div id="section">
-          <MesSons
-            id={this.state.id}
-            addSong={this.addSong}
-            loadsong={this.state.loadsong}
-            selectedMaVideo={this.selectedMaVideo}
-          />
         </div>
       </div>
     )

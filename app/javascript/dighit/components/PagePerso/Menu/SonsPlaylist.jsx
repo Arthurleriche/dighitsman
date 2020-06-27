@@ -12,9 +12,9 @@ const SonsPlaylist = ({toutesLesPlaylists, playlist, id, selectedVideo, name}) =
 
   useEffect(() => {
     axios(url)
-      .then(res => setSongs(res.data))
+      .then(res => setSongs(res.data.data))
       .catch()
-    const tri = songs.filter(song => song.playlist_id == playlist );
+    const tri = songs.filter(song => song.attributes.playlist_id == playlist );
     setSong(tri)
      },[playlist])
 

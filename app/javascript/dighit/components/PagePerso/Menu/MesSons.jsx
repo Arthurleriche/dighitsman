@@ -11,7 +11,7 @@ const MesSons = ({ selectedVideo, id }) => {
 
   useEffect(() => {
     axios(url)
-      .then(res => setSongs(res.data))
+      .then(res => setSongs(res.data.data))
       .catch()
      },[])
 

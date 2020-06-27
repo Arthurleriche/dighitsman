@@ -12,13 +12,11 @@ const Lecteur = ({ video, id }) => {
   const url = `/api/v1/${id}/songs`
   const [index, setIndex] = useState(0)
 
-
-
   useEffect(() => {
     axios(url)
       .then(res => setLecteurPlaylist(res.data))
       .catch()
-      setPlayeurLecteur(video.url)
+      setPlayeurLecteur(video.attributes.url)
   },[video])
 
   const nextSong = (index) => {
