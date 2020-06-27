@@ -9,7 +9,6 @@ import MesPlaylists from './Menu/MesPlaylists'
 import YoutubeVideo from './Youtube/YoutubeVideo';
 import Lecteur from '../Lecteur/Lecteur'
 
-import TestArray from './testarray'
 
 
 const PagePerso = ({id}) =>  {
@@ -78,7 +77,6 @@ const PagePerso = ({id}) =>  {
             {Menu()}
           </div>
         }
-        <TestArray />
     </Fragment>
   )
 }
