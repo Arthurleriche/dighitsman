@@ -3,9 +3,14 @@ import axios from 'axios'
 
 import vinyl from "../../../../../assets/images/VINYL.png"
 
+import { Card, Avatar } from 'antd';
+import "antd/dist/antd.css";
+import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
-const CartePlaylists = ({ playlists, selectedPlaylists}) => {
 
+const CartePlaylists = ({ playlists, selectedPlaylists, playPlaylist}) => {
+
+  const { Meta } = Card;
   const [img, setImg] = useState()
 
   useEffect(() => {
@@ -20,17 +25,34 @@ const CartePlaylists = ({ playlists, selectedPlaylists}) => {
     }
    },[playlists])
 
+
+
   return (
     <div onClick={() => selectedPlaylists(playlists)} id="carte-video">
-      <div id="image">
-        <img src={img} alt=""/>
-      </div>
-      <div id="carte-description">
-      <p>{playlists.attributes.name}</p>
-      </div>
+    <Card
+      style={{ width: 300 }}
+      cover={
+        <img
+          alt="example"
+          src={img}
+        />
+      }
+      actions={[
+        <SettingOutlined key="setting" />,
+        <EditOutlined key="edit" onClick={() => playPlaylist(playlists.id)}/>,
+        <EllipsisOutlined key="ellipsis" />,
+      ]}
+    >
+      <Meta
+        // avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+        title={playlists.attributes.name}
+        description="Style"
+      />
+  </Card>,
     </div>
   )
 }
+
 
 export default CartePlaylists
 

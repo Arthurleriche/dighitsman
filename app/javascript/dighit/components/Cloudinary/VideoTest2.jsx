@@ -53,22 +53,12 @@ const VideoTest2 = () => {
 }
 
 export default VideoTest2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <div id="image">
+        <img src={img} alt=""/>
+      </div>
+      <div id="carte-description">
+      <p>{playlists.attributes.name}</p>
+      </div>
 
 
 

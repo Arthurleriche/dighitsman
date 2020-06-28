@@ -27,16 +27,6 @@ const PagePerso = ({id}) =>  {
     setVideo(selectedvideo)
   }
 
-  // useEffect(() => {
-  //   axios.get("https://www.googleapis.com/youtube/v3/search", {
-  //     params: {
-  //       ...baseParams,
-  //       q: "leikelei47"
-  //     }
-  //   })
-  //   .then(response => setYoutube(response.data.items));
-  // }, [])
-
   const rechercheYoutube = async (search) => {
     const response = await axios.get("https://www.googleapis.com/youtube/v3/search", {
       params: {
@@ -54,20 +44,20 @@ const PagePerso = ({id}) =>  {
       case "sons":
         return <MesSons selectedVideo={selectedVideo} id={id}/>
       case "playlists":
-        return <MesPlaylists selectedVideo={selectedVideo} id={id}/>
+        return <MesPlaylists selectedVideo={selectedVideo} id={id} selectedVideo={selectedVideo}/>
     };
   };
 
-  const LecteurPlayer = video === "" ? <div></div> : <Lecteur video={video} id={id}/>
+  const LecteurPlayer = video === "" ? <div></div> : <Lecteur video={video} id={id} selectedVideo={selectedVideo}/>
 
   return (
     <Fragment>
       <CarteUtilisateur />
-      {LecteurPlayer}
       <MenuPagePerso
         handleChange={handleChange}
         rechercheYoutube={rechercheYoutube}
       />
+      {LecteurPlayer}
         {loadYoutube ?
           <div className="container-menu-youtube">
             {Menu()}

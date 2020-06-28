@@ -9,14 +9,19 @@ import CartePlaylists from './CartePlaylists'
 const MesPlaylists = ({selectedVideo, id }) => {
 
   const url = `/api/v1/${id}/playlists`
+  const urlSongs = `/api/v1/${id}/songs`
 
   const [playlists, setPlaylists] = useState([])
   const [playlist, setPlaylist] = useState(null)
   const [name, setName] = useState("")
+  const [songs, setSongs] = useState([])
 
   useEffect(() => {
     axios(url)
       .then(res => setPlaylists(res.data.data))
+      .catch()
+    axios(urlSongs)
+      .then(res => setSongs(res.data.data))
       .catch()
      },[])
 
@@ -26,8 +31,16 @@ const MesPlaylists = ({selectedVideo, id }) => {
     setName(playlist.attributes.name)
   }
 
+  let tri = []
+
+  const playPlaylist = (playlist_id) => {
+   tri  = songs.filter(song => song.attributes.playlist_id == playlist_id);
+    selectedVideo(tri[0])
+  }
+
+
   const list = playlists.map((data) => {
-    return <CartePlaylists playlists={data} key={data.id} selectedPlaylists={selectedPlaylists} />
+    return <CartePlaylists playlists={data} key={data.id} selectedPlaylists={selectedPlaylists} playPlaylist={playPlaylist}/>
   })
 
   const toutesLesPlaylists = () => {

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import VideoLecteur from './VideoLecteur'
 
-const Lecteur = ({ video, id }) => {
+const Lecteur = ({ video, id, selectedVideo }) => {
 
   const [lecteurPlaylist, setLecteurPlaylist] = useState([])
   const [playeurLecteur, setPlayeurLecteur] = useState()
@@ -16,7 +16,6 @@ const Lecteur = ({ video, id }) => {
     axios(url)
       .then(res => setLecteurPlaylist(res.data))
       .catch()
-      setPlayeurLecteur(video.attributes.url)
   },[video])
 
   const nextSong = (index) => {
@@ -25,7 +24,7 @@ const Lecteur = ({ video, id }) => {
 
   return (
     <div id="lecteur">
-      <VideoLecteur nextSong={nextSong} playeurLecteur={playeurLecteur} lecteurPlaylist={lecteurPlaylist} video={video}/>
+      <VideoLecteur nextSong={nextSong} playeurLecteur={playeurLecteur} lecteurPlaylist={lecteurPlaylist} video={video} selectedVideo={selectedVideo}/>
       <p>{video.title}</p>
       <p onClick={find}>find</p>
     </div>
