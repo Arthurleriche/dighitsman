@@ -8,11 +8,12 @@ const VideoLecteur = ({video, nextSong, playeurLecteur, lecteurPlaylist, selecte
   const [previousUrl, setPreviousUrl] = useState()
   const [play, setPlay] = useState(true)
   const [videoPlaying, setVideoPlaying] = useState()
+  const [allSongs, setAllSongs] = useState([])
 
   const playerUrl = `https://youtube.com/embed/${video.attributes.url}`
 
   useEffect(() => {
-    console.log(video.attributes.url)
+
     player()
   }, [video])
 
@@ -21,6 +22,11 @@ const VideoLecteur = ({video, nextSong, playeurLecteur, lecteurPlaylist, selecte
   let tri = {}
   let indexNew = 0
   let previousIndex = 0
+
+  useEffect(() => {
+    setAllSongs(tri)
+    player()
+  }, [indexNew])
 
   const loadSong = () => {
     const playlist_id = video.attributes.playlist_id
@@ -31,12 +37,15 @@ const VideoLecteur = ({video, nextSong, playeurLecteur, lecteurPlaylist, selecte
     indexNew += 1
     previousVideo = tri[previousIndex]
     nextVideo = tri[indexNew]
-    console.log(previousVideo)
-    console.log(nextVideo)
+    setTimeout(() => {
+
+    }, 3000)
   }
 
-  const playerNextSongs = () => {
+  const playerNextSongs = (e) => {
+    setAllSongs(tri)
     nextVideo === undefined ?  selectedVideo(tri[0]) : selectedVideo(nextVideo)
+    play === false ? setPlay(true) : setPlay(true)
 
   }
 
@@ -50,15 +59,22 @@ const VideoLecteur = ({video, nextSong, playeurLecteur, lecteurPlaylist, selecte
     setPlay(!play)
   }
 
-  const player = (play) => {
+  const test = () => {
+    console.log('onReady')
+    console.log(video)
+  }
+
+  const player = () => {
    return ( <ReactPlayer
       url={playerUrl}
-      playing={true}
+      playing={play}
       width='400px'
       height= '200px'
       controls={true}
       onEnded={playerNextSongs}
       onBufferEnd={loadSong}
+      onPause={loadSong}
+      onReady={loadSong}
     /> )
   }
 

@@ -5,11 +5,32 @@
   }
 }
 
-#carte-video :hover{
-  cursor:pointer
-}
 
 #carte-description{
   margin-left: 6px;
   color: white;
 }
+
+#song-playlist{
+  display: none;
+  width: 200px;
+  height: 200px;
+}
+
+
+#song-playlist{
+  display: none;
+  width: 200px;
+  height: 200px;
+}
+
+#carte-video :hover{
+  cursor:pointer;
+  #song-playlist :hover{
+  display: block;
+  width: 300px;
+  background-color: green;
+  }
+
+}
+

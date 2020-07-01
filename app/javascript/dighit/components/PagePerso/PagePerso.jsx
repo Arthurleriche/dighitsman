@@ -18,6 +18,7 @@ const PagePerso = ({id}) =>  {
   const [youtube, setYoutube] = useState([]);
   const [loadYoutube, setLoadYoutube] = useState(false)
   const [video, setVideo] = useState("")
+  const [actual, setActual] = useState("")
 
   const handleChange = (change) => {
     setMenu(change);
@@ -34,7 +35,6 @@ const PagePerso = ({id}) =>  {
         q: search
       }
     })
-    console.log(response)
     setYoutube(response.data.items);
     setLoadYoutube(true)
   }
@@ -44,9 +44,13 @@ const PagePerso = ({id}) =>  {
       case "sons":
         return <MesSons selectedVideo={selectedVideo} id={id}/>
       case "playlists":
-        return <MesPlaylists selectedVideo={selectedVideo} id={id} selectedVideo={selectedVideo}/>
+        return <MesPlaylists selectedVideo={selectedVideo} id={id} actual={actual}/>
     };
   };
+
+  const playlistActual = (playlist) => {
+    setActual(playlist)
+  }
 
   const LecteurPlayer = video === "" ? <div></div> : <Lecteur video={video} id={id} selectedVideo={selectedVideo}/>
 
@@ -61,7 +65,7 @@ const PagePerso = ({id}) =>  {
         {loadYoutube ?
           <div className="container-menu-youtube">
             {Menu()}
-            <YoutubeVideo youtube={youtube} selectedVideo={selectedVideo} id={id}/>
+            <YoutubeVideo youtube={youtube} selectedVideo={selectedVideo} id={id} playlistActual={playlistActual}/>
           </div>
         :
           <div className="container-menu">
