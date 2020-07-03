@@ -11,7 +11,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def current_user
-    user = current_user
+    arthur = current_user
+    user = User.find(id: arthur.id)
     render json: user
   end
 end
