@@ -14,10 +14,9 @@ Rails.application.routes.draw do
       end
     end
   end
-  get 'dighit/:id', to: 'pages#dighit', as: :dighit
+  get 'dighit/:id/landing', to: 'pages#dighit', as: :dighit
   get 'dighit/:id/search', to: 'pages#dighit'
   get 'dighit/:id/video', to: 'pages#dighit'
-  get 'dighit/:id/landing', to: 'pages#dighit'
 
   namespace :api do
     namespace :v1 do
