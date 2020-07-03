@@ -21,7 +21,7 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong }) => {
       .then(res => setPlaylists(res.data.data))
       .catch()
     axios(urlSongs)
-      .then(res => console.log(res.data.data))
+      .then(res => setSongs(res.data.data))
       .catch()
      },[])
 
