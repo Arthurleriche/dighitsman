@@ -15,7 +15,9 @@ const CartePlaylists = ({songs, playlists, selectedPlaylists, playPlaylist}) => 
   const [song, setSong] = useState([])
 
   useEffect(() => {
-  if (!playlists.relationships.songs){
+    console.log(playlists.relationships.songs.data[0])
+  if (playlists.relationships.songs.data[0]){
+    console.log('je joue if')
   const id = playlists.relationships.songs.data[0]
   const url = `/api/v1/songs/${id.id}`
       axios(url)
@@ -24,6 +26,7 @@ const CartePlaylists = ({songs, playlists, selectedPlaylists, playPlaylist}) => 
   let playlistSong = songs.filter(song => song.attributes.playlist_id == playlists.id);
   } else {
     setImg(vinyl)
+    console.log('je joue else')
     }
    },[playlists])
 

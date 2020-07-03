@@ -6,7 +6,7 @@ import Popup from "reactjs-popup";
 import AddPlaylist from '../Menu/AddPlaylist'
 
 
-const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id }) => {
+const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addSongToArray }) => {
 
   const [playlists, setPlaylists] = useState([])
   const [playlist, setPlaylist] = useState(null)
@@ -20,6 +20,7 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id }) =>
     score: null
   })
   const [actual, setActual] = useState()
+  const [newSong, setNewSong] = useState("")
 
   useEffect(() => {
     const url = `/api/v1/${id}/playlists`
@@ -46,27 +47,29 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id }) =>
 
   const selectedPlaylist = (playlist_id) => {
     setPlaylist(playlist_id)
+    console.log(playlist_id)
   }
 
-  const addPlaylistToArray = (newPlaylist) => {
-    setPlaylists([...playlists, newPlaylist])
+  const addPlaylistToArray = (playlist) => {
+    setPlaylists([...playlists, playlist])
   }
 
   const addVideoToPlaylist = () => {
-    console.log(song)
     axios.post('/api/v1/songs', song);
     alert('add')
-
+    addSongToArray({attributes: song})
   }
 
-  let res = {}
+  let res = []
 
   const createPlaylist = (newPlaylist) => {
-    console.log(playlists)
-    axios.post('/api/v1/playlists', newPlaylist)
-      .then(res => playlistActual(res.data.data))
-    alert('tu viens de creer une playlist')
-    console.log(res)
+    const response = axios.post('/api/v1/playlists', newPlaylist)
+      .then(res => add(res.data.data, res.data.data))
+  }
+
+  const add = (un, deux) => {
+    playlistActual(un)
+    addPlaylistToArray(deux)
   }
 
   const listPlaylist = playlists.map((data) => {

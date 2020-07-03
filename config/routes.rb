@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   root 'pages#home'
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:index, :show, :current_user] do
+      get '/current_user', to: "users#current_user"
+      resources :users, only: [:index, :show] do
         resources :playlists, only: [:index, :show, :create]
         resources :songs, only: [:index, :show, :create, :destroy]
       end

@@ -1,5 +1,6 @@
 import React, {useEffect, useState, Fragment} from 'react'
 import ReactPlayer from 'react-player';
+import axios from 'axios'
 
 const VideoLecteur = ({video, nextSong, playeurLecteur, lecteurPlaylist, selectedVideo }) => {
 
@@ -46,7 +47,6 @@ const VideoLecteur = ({video, nextSong, playeurLecteur, lecteurPlaylist, selecte
     setAllSongs(tri)
     nextVideo === undefined ?  selectedVideo(tri[0]) : selectedVideo(nextVideo)
     play === false ? setPlay(true) : setPlay(true)
-
   }
 
 

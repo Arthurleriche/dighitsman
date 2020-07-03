@@ -19,6 +19,7 @@ const PagePerso = ({id}) =>  {
   const [loadYoutube, setLoadYoutube] = useState(false)
   const [video, setVideo] = useState("")
   const [actual, setActual] = useState("")
+  const [addSong, setAddSong] = useState("")
 
   const handleChange = (change) => {
     setMenu(change);
@@ -44,13 +45,18 @@ const PagePerso = ({id}) =>  {
       case "sons":
         return <MesSons selectedVideo={selectedVideo} id={id}/>
       case "playlists":
-        return <MesPlaylists selectedVideo={selectedVideo} id={id} actual={actual}/>
+        return <MesPlaylists selectedVideo={selectedVideo} id={id} actual={actual} addSong={addSong}/>
     };
   };
 
   const playlistActual = (playlist) => {
     setActual(playlist)
   }
+
+  const addSongToArray = (song) => {
+    setAddSong(song)
+  }
+
 
   const LecteurPlayer = video === "" ? <div></div> : <Lecteur video={video} id={id} selectedVideo={selectedVideo}/>
 
@@ -65,7 +71,7 @@ const PagePerso = ({id}) =>  {
         {loadYoutube ?
           <div className="container-menu-youtube">
             {Menu()}
-            <YoutubeVideo youtube={youtube} selectedVideo={selectedVideo} id={id} playlistActual={playlistActual}/>
+            <YoutubeVideo youtube={youtube} selectedVideo={selectedVideo} id={id} playlistActual={playlistActual} addSongToArray={addSongToArray}/>
           </div>
         :
           <div className="container-menu">

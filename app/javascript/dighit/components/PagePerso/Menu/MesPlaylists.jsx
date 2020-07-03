@@ -6,7 +6,7 @@ import CartePlaylists from './CartePlaylists'
 
 
 
-const MesPlaylists = ({selectedVideo, id, actual }) => {
+const MesPlaylists = ({selectedVideo, id, actual, addSong }) => {
 
   const url = `/api/v1/${id}/playlists`
   const urlSongs = `/api/v1/${id}/songs`
@@ -21,19 +21,27 @@ const MesPlaylists = ({selectedVideo, id, actual }) => {
       .then(res => setPlaylists(res.data.data))
       .catch()
     axios(urlSongs)
-      .then(res => setSongs(res.data.data))
+      .then(res => console.log(res.data.data))
       .catch()
      },[])
 
   useEffect(() => {
-    // setPlaylists([...playlists, actual])
     if (actual == ""){
-      console.log('vide')
     }else {
       setPlaylists([...playlists, actual])
+    console.log(actual)
     }
-    console.log(playlists)
   }, [actual])
+
+
+
+  useEffect(() => {
+    if (addSong == ""){
+    }else {
+      setSongs([...songs, addSong])
+    }
+  }, [addSong])
+
 
   const selectedPlaylists = (playlist) => {
     setPlaylist(playlist.id)
@@ -48,10 +56,9 @@ const MesPlaylists = ({selectedVideo, id, actual }) => {
   }
 
 
-  const list = () => {
-    return (playlists.map((data) => {
+  const list = playlists.map((data) => {
     return <CartePlaylists playlists={data} key={data.id} selectedPlaylists={selectedPlaylists} playPlaylist={playPlaylist} songs={songs}/>
-  }))}
+  })
 
   const toutesLesPlaylists = () => {
     setPlaylist(null)
@@ -62,7 +69,7 @@ const MesPlaylists = ({selectedVideo, id, actual }) => {
       <h3 className="titre">Mes Playlists</h3>
         <div id="mes-sons-listes">
           <div id="mes-sons-liste">
-          {list()}
+          {list}
           </div>
         </div>
       <SonsPlaylist playlist={playlist} id={id} selectedVideo={selectedVideo} toutesLesPlaylists={toutesLesPlaylists} name={name}/>

@@ -18,12 +18,12 @@ export default class App extends React.Component {
     return (
       <div>
          <Router history={history}>
-           <Route path='/dighit/:userId/' exact component={Landing} />
            <Route path='/dighit/:userId/search' component={SearchPage} />
-           <Route path='/dighit/:userId/landing' render={ ({match}) => <PagePerso id={match.params.userId}/> } />
+           <Route path='/dighit/:userId/landing' exact render={ ({match}) => <PagePerso id={match.params.userId}/> } />
         </Router>
       </div>
     )
   }
 }
 
+           // <Route path='/dighit/:userId/' exact component={Landing} />

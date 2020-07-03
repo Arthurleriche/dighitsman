@@ -2,7 +2,7 @@ import React, { useState }  from "react"
 
 import CarteYoutube from './CarteYoutube'
 
-const YoutubeVideo = ({playlistActual, youtube, selectedVideo, id}) => {
+const YoutubeVideo = ({playlistActual, youtube, selectedVideo, id, addSongToArray}) => {
 
   const [selected, setSelected] = useState({
     url: "",
@@ -25,7 +25,7 @@ const YoutubeVideo = ({playlistActual, youtube, selectedVideo, id}) => {
   }
 
   const list = youtube.map((data) => {
-   return <CarteYoutube resultat={data} video={video} handleSelected={handleSelected} id={id} playlistActual={playlistActual}/>
+   return <CarteYoutube resultat={data} video={video} handleSelected={handleSelected} id={id} playlistActual={playlistActual} addSongToArray={addSongToArray}/>
   })
 
   return (
