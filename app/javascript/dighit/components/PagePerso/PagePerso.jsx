@@ -58,7 +58,7 @@ const PagePerso = ({id}) =>  {
   }
 
 
-    document.addEventListener("keyup",  console.log(e) )
+    document.addEventListener("keyup",  console.log(event) )
 
 
   const LecteurPlayer = video === "" ? <div></div> : <Lecteur video={video} id={id} selectedVideo={selectedVideo}/>
