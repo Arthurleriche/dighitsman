@@ -57,18 +57,15 @@ const PagePerso = ({id}) =>  {
     setAddSong(song)
   }
 
-  const test = () => {
-    axios("api/v1/current_user")
-      .then(res => console.log(res.data))
-      console.log("je suis test")
-  }
+
+    document.addEventListener("keyup",  console.log(e) )
 
 
   const LecteurPlayer = video === "" ? <div></div> : <Lecteur video={video} id={id} selectedVideo={selectedVideo}/>
 
   return (
     <Fragment>
-    <button onClick={test}>test</button>
+    <button onChange={test}>test</button>
       <CarteUtilisateur />
       <MenuPagePerso
         handleChange={handleChange}
