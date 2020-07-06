@@ -9,7 +9,12 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import StopIcon from '@material-ui/icons/Stop';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
+import Slider from '@material-ui/core/Slider';
+import VolumeDown from '@material-ui/icons/VolumeDown';
+import VolumeUp from '@material-ui/icons/VolumeUp';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     marginRight: 16,
+    marginLeft: 16,
   },
 
   controls: {
@@ -55,6 +61,8 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
   const [play, setPlay] = useState(true)
   const [videoPlaying, setVideoPlaying] = useState()
   const [allSongs, setAllSongs] = useState([])
+  const [range, setRange] = useState(100)
+  const [volume, setVolume] = useState(1)
 
   const playerUrl = `https://youtube.com/embed/${video.attributes.url}`
 
@@ -118,7 +126,12 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
     /> )
   }
 
-  return (
+  const rangeVolume = (event, newValue) => {
+    setRange(newValue)
+    setVolume(range/100)
+  }
+
+  return(
     <Card className={classes.root}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
@@ -133,11 +146,24 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
             {theme.direction === 'rtl' ? <SkipNextIcon onClick={playerNextSongs}/> : <SkipPreviousIcon onClick={playerPreviousSongs} />}
           </IconButton>
           <IconButton aria-label="play/pause">
+          {play ?
+            <StopIcon className={classes.playIcon} onClick={playon} />
+            :
             <PlayArrowIcon className={classes.playIcon} onClick={playon} />
+          }
           </IconButton>
           <IconButton aria-label="next">
             {theme.direction === 'rtl' ? <SkipPreviousIcon onClick={playerPreviousSongs} /> : <SkipNextIcon onClick={playerNextSongs} />}
           </IconButton>
+        <Grid item>
+          <VolumeDown />
+        </Grid>
+        <Grid item xs>
+          <Slider value={range} onChange={rangeVolume} aria-labelledby="continuous-slider" />
+        </Grid>
+        <Grid item>
+          <VolumeUp />
+        </Grid>
         </div>
       </div>
       <div className={classes.lecteur}>
@@ -147,7 +173,7 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
         playing={play}
         width='200px'
         height= '200px'
-        controls={true}
+        volume={volume}
         onEnded={playerNextSongs}
         onBufferEnd={loadSong}
         onPause={loadSong}
@@ -159,3 +185,7 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
 }
 
 export default VideoLecteur
+
+          // <div className={classes.volume}>
+          //   <input type="range" min="0" max="10" step="0.1" onChange={rangeVolume}/>
+          // </div>
