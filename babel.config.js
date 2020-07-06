@@ -5,6 +5,13 @@ module.exports = function(api) {
   var isProductionEnv = api.env('production')
   var isTestEnv = api.env('test')
 
+  "plugins": [
+  ["import", {
+    "libraryName": "antd",
+    "style": true
+  }]
+]
+
   if (!validEnv.includes(currentEnv)) {
     throw new Error(
       'Please specify a valid `NODE_ENV` or ' +
@@ -45,7 +52,11 @@ module.exports = function(api) {
         }
       ]
     ].filter(Boolean),
-    plugins: [
+      plugins: [
+        ["import", {
+        "libraryName": "antd",
+        "style": true
+      }]
       'babel-plugin-macros',
       '@babel/plugin-syntax-dynamic-import',
       isTestEnv && 'babel-plugin-dynamic-import-node',

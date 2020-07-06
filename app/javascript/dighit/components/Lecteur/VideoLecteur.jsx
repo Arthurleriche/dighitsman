@@ -25,7 +25,6 @@ const VideoLecteur = ({video, nextSong, playeurLecteur, lecteurPlaylist, selecte
   let previousIndex = 0
 
   useEffect(() => {
-    setAllSongs(tri)
     player()
   }, [indexNew])
 
@@ -44,15 +43,13 @@ const VideoLecteur = ({video, nextSong, playeurLecteur, lecteurPlaylist, selecte
   }
 
   const playerNextSongs = (e) => {
-    setAllSongs(tri)
-    nextVideo === undefined ?  selectedVideo(tri[0]) : selectedVideo(nextVideo)
+    nextVideo === undefined ?  selectedVideo(video) : selectedVideo(nextVideo)
     play === false ? setPlay(true) : setPlay(true)
   }
 
 
   const playerPreviousSongs = () => {
     previousVideo === undefined ?  selectedVideo(video) : selectedVideo(previousVideo)
-
   }
 
   const playon = () => {
