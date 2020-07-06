@@ -58,7 +58,10 @@ const PagePerso = ({id}) =>  {
   }
 
 
-    document.addEventListener("keyup",  console.log(event) )
+  const test = (event) => {
+  }
+
+  document.addEventListener("scroll", test)
 
 
   const LecteurPlayer = video === "" ? <div></div> : <Lecteur video={video} id={id} selectedVideo={selectedVideo}/>
