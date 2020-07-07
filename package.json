@@ -24,8 +24,6 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "antd": "^4.4.1",
-    "antd-scss-theme-plugin": "^1.0.8",
     "babel-plugin-import": "^1.13.0",
     "webpack-dev-server": "^3.11.0"
   }

@@ -33,6 +33,16 @@ const useStyles = makeStyles((theme) => ({
 
   },
 
+  volume: {
+    width: 40,
+  },
+
+  volumeIcon:{
+    height: 23,
+    width: 23,
+    color: '#6F6F6F',
+  },
+
   lecteur: {
     display: 'flex',
     alignItems: 'center',
@@ -66,20 +76,11 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
 
   const playerUrl = `https://youtube.com/embed/${video.attributes.url}`
 
-  useEffect(() => {
-
-    player()
-  }, [video])
-
   let nextVideo = {}
   let previousVideo = {}
   let tri = {}
   let indexNew = 0
   let previousIndex = 0
-
-  useEffect(() => {
-    player()
-  }, [indexNew])
 
   const loadSong = () => {
     const playlist_id = video.attributes.playlist_id
@@ -90,9 +91,6 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
     indexNew += 1
     previousVideo = tri[previousIndex]
     nextVideo = tri[indexNew]
-    setTimeout(() => {
-      console.log(nextVideo)
-    }, 3000)
   }
 
   const playerNextSongs = (e) => {
@@ -110,25 +108,12 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
   }
 
   const test = () => {
-    console.log('onReady')
-    console.log(video)
-  }
-
-  const player = () => {
-   return ( <ReactPlayer
-      url={playerUrl}
-      playing={play}
-      controls={true}
-      onEnded={playerNextSongs}
-      onBufferEnd={loadSong}
-      onPause={loadSong}
-      onReady={loadSong}
-    /> )
   }
 
   const rangeVolume = (event, newValue) => {
     setRange(newValue)
-    setVolume(range/100)
+    let vol = range/100
+    setVolume(vol)
   }
 
   return(
@@ -155,15 +140,11 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
           <IconButton aria-label="next">
             {theme.direction === 'rtl' ? <SkipPreviousIcon onClick={playerPreviousSongs} /> : <SkipNextIcon onClick={playerNextSongs} />}
           </IconButton>
-        <Grid item>
-          <VolumeDown />
-        </Grid>
-        <Grid item xs>
-          <Slider value={range} onChange={rangeVolume} aria-labelledby="continuous-slider" />
-        </Grid>
-        <Grid item>
-          <VolumeUp />
-        </Grid>
+
+          <VolumeDown className={classes.volumeIcon}/>
+          <Slider className={classes.volume} value={range} onChange={rangeVolume} aria-labelledby="continuous-slider" />
+
+          <VolumeUp className={classes.volumeIcon}/>
         </div>
       </div>
       <div className={classes.lecteur}>
@@ -185,7 +166,3 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
 }
 
 export default VideoLecteur
-
-          // <div className={classes.volume}>
-          //   <input type="range" min="0" max="10" step="0.1" onChange={rangeVolume}/>
-          // </div>
