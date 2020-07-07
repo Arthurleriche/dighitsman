@@ -25,8 +25,6 @@ const Lecteur = ({ video, id, selectedVideo }) => {
   return (
     <div id="lecteur">
       <VideoLecteur nextSong={nextSong} playeurLecteur={playeurLecteur} lecteurPlaylist={lecteurPlaylist} video={video} selectedVideo={selectedVideo}/>
-      <p>{video.title}</p>
-      <p onClick={find}>find</p>
     </div>
   )
 }

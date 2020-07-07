@@ -29,7 +29,6 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong }) => {
     if (actual == ""){
     }else {
       setPlaylists([...playlists, actual])
-    console.log(actual)
     }
   }, [actual])
 
@@ -52,7 +51,10 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong }) => {
 
   const playPlaylist = (playlist_id) => {
    tri  = songs.filter(song => song.attributes.playlist_id == playlist_id);
+    if (tri[0] === undefined){
+    } else {
     selectedVideo(tri[0])
+    }
   }
 
 
