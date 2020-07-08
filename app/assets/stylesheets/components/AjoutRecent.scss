@@ -4,3 +4,21 @@
   width: 1400px;
   height: 200px;
 }
+
+@media (max-width: 600px) {
+  #ajout-recent{
+  display: flex;
+  overflow-x: scroll;
+  width: 400px;
+  height: 200px;
+}
+}
+
+@media (max-width: 2000px) {
+  #ajout-recent{
+  display: flex;
+  overflow-x: scroll;
+  width: 1400px;
+  height: 200px;
+}
+}
