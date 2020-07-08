@@ -15,7 +15,8 @@ import AjoutRecent from './AjoutRecent'
 const PagePerso = ({id}) =>  {
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/v1/users/${id}`)
+    const urlUser =`api/v1/users/${id}`
+    axios.get(urlUser)
       .then(res => setUser(res.data))
   }, [])
 
@@ -49,15 +50,17 @@ const PagePerso = ({id}) =>  {
   }
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/v1/songs")
+    const urlSongs = "api/v1/songs"
+    axios.get(urlSongs)
       .then(res => setAllSongs(res.data.data.reverse()))
   }, [addSong, supSong])
 
 
   const destroySong = (delSong) => {
+    const urlDelete = `/api/v1/songs/${supSong.id}`
     let reponse = confirm("Veux tu supprimer la vidéo ?")
     if(reponse){
-    axios.delete(`/api/v1/songs/${supSong.id}`)
+    axios.delete(urlDelete)
     }setSupSong(supSong.id)
   }
 
