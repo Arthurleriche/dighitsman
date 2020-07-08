@@ -7,7 +7,7 @@ const AjoutRecent = ({ allSongs, selectedVideo }) => {
     return <CarteDernierSons key={data.id} allSongs={data} selectedVideo={selectedVideo}/>
   })
   return (
-    <div id="ajout-recent">
+    <div className="ajout-recent">
       {listRecent}
     </div>
   )
