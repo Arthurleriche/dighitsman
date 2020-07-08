@@ -50,26 +50,18 @@ const PagePerso = ({id}) =>  {
   }
 
   useEffect(() => {
-    const urlSongs = "/api/v1/songs"
+    const urlSongs = '/api/v1/songs'
     axios.get(urlSongs)
       .then(res => setAllSongs(res.data.data.reverse()))
   }, [addSong, supSong])
 
-
-  const destroySong = (delSong) => {
-    const urlDelete = `/api/v1/songs/${supSong.id}`
-    let reponse = confirm("Veux tu supprimer la vidéo ?")
-    if(reponse){
-    axios.delete(urlDelete)
-    }setSupSong(supSong.id)
-  }
 
   const Menu = () => {
     switch(menu) {
       case "sons":
         return <MesSons selectedVideo={selectedVideo} id={id}/>
       case "playlists":
-        return <MesPlaylists selectedVideo={selectedVideo} id={id} actual={actual} addSong={addSong} destroySong={destroySong} supSong={supSong}/>
+        return <MesPlaylists selectedVideo={selectedVideo} id={id} actual={actual} addSong={addSong}/>
     };
   };
 
