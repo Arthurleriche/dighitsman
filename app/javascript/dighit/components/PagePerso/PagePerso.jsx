@@ -15,7 +15,7 @@ import AjoutRecent from './AjoutRecent'
 const PagePerso = ({id}) =>  {
 
   useEffect(() => {
-    const urlUser = `api/v1/users/${id}`
+    const urlUser = `/api/v1/users/${id}`
     axios.get(urlUser)
       .then(res => setUser(res.data))
   }, [])
@@ -50,7 +50,7 @@ const PagePerso = ({id}) =>  {
   }
 
   useEffect(() => {
-    const urlSongs = "api/v1/songs"
+    const urlSongs = "/api/v1/songs"
     axios.get(urlSongs)
       .then(res => setAllSongs(res.data.data.reverse()))
   }, [addSong, supSong])
