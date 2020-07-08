@@ -14,7 +14,12 @@ import AjoutRecent from './AjoutRecent'
 
 const PagePerso = ({id}) =>  {
 
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/v1/users/${id}`)
+      .then(res => setUser(res.data))
+  }, [])
 
+  const [user, setUser] = useState({})
   const [menu, setMenu] = useState("playlists");
   const [youtube, setYoutube] = useState([]);
   const [loadYoutube, setLoadYoutube] = useState(false)
@@ -87,7 +92,7 @@ const PagePerso = ({id}) =>  {
   return (
     <Fragment>
     <button onClick={test}>test</button>
-      <CarteUtilisateur />
+      <CarteUtilisateur user={user}/>
       <AjoutRecent allSongs={allSongs} selectedVideo={selectedVideo}/>
       <MenuPagePerso
         handleChange={handleChange}

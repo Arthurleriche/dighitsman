@@ -4,7 +4,7 @@ import Popup from "reactjs-popup";
 
 import avatar from "../../../../assets/images/avatar.jpeg"
 
-const CarteUtilisateur = () => {
+const CarteUtilisateur = ({ user }) => {
   return (
     <div id="utilisateur">
       <div id="carteUtilisateur" className="container">
@@ -13,7 +13,7 @@ const CarteUtilisateur = () => {
         </div>
         <div id="infosUtilisateur">
           <div>
-            <p>Pseudo</p>
+            <p>{user.username}</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et dolor saepe architecto, ipsum quas deleniti quia! Quaerat cupiditate culpa a quo delectus aperiam! Vel fuga sunt ab eligendi perferendis dolore.</p>
             <a href="">Soundcloud</a>
             <br/>
