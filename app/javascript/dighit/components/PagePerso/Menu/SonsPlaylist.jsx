@@ -24,7 +24,10 @@ const SonsPlaylist = ({addSong, toutesLesPlaylists, playlist, id, selectedVideo,
     if(reponse){
     axios.delete(`/api/v1/songs/${supSong.id}`)
     }
-    setSong(supSong)
+    setTimeout(() => {
+      setSong(supSong)
+      console.log('supsong')
+    }, 1000)
   }
 
   const listSon = () => {
