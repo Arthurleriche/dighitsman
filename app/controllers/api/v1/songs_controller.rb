@@ -26,6 +26,10 @@ class Api::V1::SongsController < ApplicationController
     end
   end
 
+  def song_of_playlist
+    songs = Song.where(playlist_id: params[:playlist_id])
+    render json: SongSerializer.new(songs).as_json
+  end
 
   def destroy
     song = Song.find(id = params[:id])

@@ -3,31 +3,41 @@ import axios from 'axios'
 
 import CarteVideo from './CarteVideo'
 
-const SonsPlaylist = ({toutesLesPlaylists, playlist, id, selectedVideo, name}) => {
+const SonsPlaylist = ({addSong, toutesLesPlaylists, playlist, id, selectedVideo, name}) => {
 
-  const url = `/api/v1/${id}/songs`
+  const url = `/api/v1/playlists/${playlist}/songs`
 
   const [songs, setSongs] = useState([])
   const [song, setSong] = useState([])
+
 
   useEffect(() => {
     axios(url)
       .then(res => setSongs(res.data.data))
       .catch()
-    const tri = songs.filter(song => song.attributes.playlist_id == playlist );
-    setSong(tri)
-     },[playlist])
+      listSon()
+     },[playlist, song, addSong])
 
-  const listSon = song.map((data) => {
-    return <CarteVideo songs={data} key={data.id} selectedVideo={selectedVideo}/>
-  })
+
+  const destroySong = (supSong) => {
+    let reponse = confirm("Veux tu supprimer la vidéo ?")
+    if(reponse){
+    axios.delete(`/api/v1/songs/${supSong.id}`)
+    }
+    setSong(supSong)
+  }
+
+  const listSon = () => {
+   return songs.map((data) => {
+    return <CarteVideo songs={data} key={data.id} selectedVideo={selectedVideo} destroySong={destroySong}/>
+  })}
 
   return (
         <Fragment>
         <h3 className="titre">{name}</h3>
         <div id="mes-sons-listes">
           <div id="mes-sons-liste">
-            {listSon}
+            {listSon()}
           </div>
         </div>
         </Fragment>

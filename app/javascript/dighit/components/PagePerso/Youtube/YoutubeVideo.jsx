@@ -25,7 +25,7 @@ const YoutubeVideo = ({playlistActual, youtube, selectedVideo, id, addSongToArra
   }
 
   const list = youtube.map((data) => {
-   return <CarteYoutube resultat={data} video={video} handleSelected={handleSelected} id={id} playlistActual={playlistActual} addSongToArray={addSongToArray}/>
+   return <CarteYoutube  key={data.id.kind} resultat={data} video={video} handleSelected={handleSelected} id={id} playlistActual={playlistActual} addSongToArray={addSongToArray}/>
   })
 
   return (

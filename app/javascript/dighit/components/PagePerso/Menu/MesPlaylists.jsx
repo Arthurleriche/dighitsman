@@ -15,6 +15,7 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong }) => {
   const [playlist, setPlaylist] = useState(null)
   const [name, setName] = useState("")
   const [songs, setSongs] = useState([])
+  const [idSong, setIdSong] = useState(0)
 
   useEffect(() => {
     axios(url)
@@ -23,7 +24,8 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong }) => {
     axios(urlSongs)
       .then(res => setSongs(res.data.data))
       .catch()
-     },[])
+      setSongs(songs)
+     },[idSong])
 
   useEffect(() => {
     if (actual == ""){
@@ -57,6 +59,13 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong }) => {
     }
   }
 
+  const destroySong = (supSong) => {
+    let reponse = confirm("Veux tu supprimer la vidéo ?")
+    if(reponse){
+    axios.delete(`/api/v1/songs/${supSong.id}`)
+    }setIdSong(supSong.id)
+
+  }
 
   const list = playlists.map((data) => {
     return <CartePlaylists playlists={data} key={data.id} selectedPlaylists={selectedPlaylists} playPlaylist={playPlaylist} songs={songs}/>
@@ -74,7 +83,7 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong }) => {
           {list}
           </div>
         </div>
-      <SonsPlaylist playlist={playlist} id={id} selectedVideo={selectedVideo} toutesLesPlaylists={toutesLesPlaylists} name={name}/>
+      <SonsPlaylist playlist={playlist} id={id} selectedVideo={selectedVideo} toutesLesPlaylists={toutesLesPlaylists} name={name} destroySong={destroySong} addSong={addSong}/>
     </div>
 
   )

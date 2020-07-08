@@ -73,7 +73,7 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addS
   }
 
   const listPlaylist = playlists.map((data) => {
-    return <a onClick={() => selectedPlaylist(data.id)} id="name-playlist">{data.attributes.name}</a>
+    return <a key={data.id} onClick={() => selectedPlaylist(data.id)} id="name-playlist">{data.attributes.name}</a>
   })
 
   return (
@@ -84,7 +84,7 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addS
       <div id="carte-description-youtube" onClick={handleSelected}>
         <p>{resultat.snippet.title}</p>
       </div>
-        <Popup trigger={<button> ajoute moi à une de tes playlists</button>} position="top-left">
+        <Popup trigger={<button> ajoute moi à une de tes playlists</button>} position="left">
           <div id="popup-add-to-playlists">
             <div id="addplaylist">
               {listPlaylist}

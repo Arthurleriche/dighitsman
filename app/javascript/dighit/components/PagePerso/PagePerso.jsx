@@ -68,7 +68,7 @@ const PagePerso = ({id}) =>  {
 
   return (
     <Fragment>
-    <button onChange={test}>test</button>
+    <button onClick={test}>test</button>
       <CarteUtilisateur />
       <MenuPagePerso
         handleChange={handleChange}

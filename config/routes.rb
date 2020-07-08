@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  namespace :api do
-    namespace :v1 do
-      get 'review_songs/show'
-    end
-  end
   root 'pages#home'
   namespace :api do
     namespace :v1 do
@@ -14,6 +9,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
   get 'dighit/:id/landing', to: 'pages#dighit', as: :dighit
   get 'dighit/:id/search', to: 'pages#dighit'
   get 'dighit/:id/video', to: 'pages#dighit'
@@ -27,6 +23,11 @@ Rails.application.routes.draw do
     end
     resources :review_songs, only: [:index, :show, :create]
       get '/:id/songs', to: 'songs#my_songs'
+    end
+  end
+  namespace :api do
+    namespace :v1 do
+      get '/playlists/:playlist_id/songs', to: 'songs#song_of_playlist'
     end
   end
   devise_for :users
