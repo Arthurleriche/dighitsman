@@ -8,6 +8,7 @@ import MesSons from './Menu/MesSons'
 import MesPlaylists from './Menu/MesPlaylists'
 import YoutubeVideo from './Youtube/YoutubeVideo';
 import Lecteur from '../Lecteur/Lecteur'
+import AjoutRecent from './AjoutRecent'
 
 
 
@@ -20,6 +21,8 @@ const PagePerso = ({id}) =>  {
   const [video, setVideo] = useState("")
   const [actual, setActual] = useState("")
   const [addSong, setAddSong] = useState("")
+  const [allSongs, setAllSongs] = useState([])
+  const [supSong, setSupSong] = useState(0)
 
   const handleChange = (change) => {
     setMenu(change);
@@ -40,12 +43,25 @@ const PagePerso = ({id}) =>  {
     setLoadYoutube(true)
   }
 
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/v1/songs")
+      .then(res => setAllSongs(res.data.data.reverse()))
+  }, [addSong, supSong])
+
+
+  const destroySong = (delSong) => {
+    let reponse = confirm("Veux tu supprimer la vidéo ?")
+    if(reponse){
+    axios.delete(`/api/v1/songs/${supSong.id}`)
+    }setSupSong(supSong.id)
+  }
+
   const Menu = () => {
     switch(menu) {
       case "sons":
         return <MesSons selectedVideo={selectedVideo} id={id}/>
       case "playlists":
-        return <MesPlaylists selectedVideo={selectedVideo} id={id} actual={actual} addSong={addSong}/>
+        return <MesPlaylists selectedVideo={selectedVideo} id={id} actual={actual} addSong={addSong} destroySong={destroySong} supSong={supSong}/>
     };
   };
 
@@ -61,7 +77,9 @@ const PagePerso = ({id}) =>  {
   const test = (event) => {
   }
 
-  document.addEventListener("scroll", test)
+  const tri = (a, b) => {
+   return (a - b)
+  }
 
 
   const LecteurPlayer = video === "" ? <div></div> : <Lecteur video={video} id={id} selectedVideo={selectedVideo}/>
@@ -70,6 +88,7 @@ const PagePerso = ({id}) =>  {
     <Fragment>
     <button onClick={test}>test</button>
       <CarteUtilisateur />
+      <AjoutRecent allSongs={allSongs} selectedVideo={selectedVideo}/>
       <MenuPagePerso
         handleChange={handleChange}
         rechercheYoutube={rechercheYoutube}

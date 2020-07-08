@@ -19,8 +19,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :current_user]
       resources :playlists, only: [:index, :show, :create, :destroy]
       get '/:id/playlists', to: 'playlists#my_playlists'
-      resources :songs, only: [:index, :show, :create, :destroy] do
-    end
+      resources :songs, only: [:index, :show, :create, :destroy]
     resources :review_songs, only: [:index, :show, :create]
       get '/:id/songs', to: 'songs#my_songs'
     end

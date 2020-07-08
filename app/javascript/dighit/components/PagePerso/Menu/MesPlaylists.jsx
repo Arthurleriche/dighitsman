@@ -6,7 +6,7 @@ import CartePlaylists from './CartePlaylists'
 
 
 
-const MesPlaylists = ({selectedVideo, id, actual, addSong }) => {
+const MesPlaylists = ({selectedVideo, id, actual, addSong, supSong, destroySong }) => {
 
   const url = `/api/v1/${id}/playlists`
   const urlSongs = `/api/v1/${id}/songs`
@@ -15,7 +15,7 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong }) => {
   const [playlist, setPlaylist] = useState(null)
   const [name, setName] = useState("")
   const [songs, setSongs] = useState([])
-  const [idSong, setIdSong] = useState(0)
+
 
   useEffect(() => {
     axios(url)
@@ -25,7 +25,7 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong }) => {
       .then(res => setSongs(res.data.data))
       .catch()
       setSongs(songs)
-     },[idSong])
+     },[supSong])
 
   useEffect(() => {
     if (actual == ""){
@@ -59,13 +59,7 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong }) => {
     }
   }
 
-  const destroySong = (supSong) => {
-    let reponse = confirm("Veux tu supprimer la vidéo ?")
-    if(reponse){
-    axios.delete(`/api/v1/songs/${supSong.id}`)
-    }setIdSong(supSong.id)
 
-  }
 
   const list = playlists.map((data) => {
     return <CartePlaylists playlists={data} key={data.id} selectedPlaylists={selectedPlaylists} playPlaylist={playPlaylist} songs={songs}/>
