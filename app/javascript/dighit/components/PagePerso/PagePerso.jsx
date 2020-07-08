@@ -15,7 +15,7 @@ import AjoutRecent from './AjoutRecent'
 const PagePerso = ({id}) =>  {
 
   useEffect(() => {
-    const urlUser =`api/v1/users/${id}`
+    const urlUser = `api/v1/users/${id}`
     axios.get(urlUser)
       .then(res => setUser(res.data))
   }, [])

@@ -21,8 +21,9 @@ const SonsPlaylist = ({addSong, toutesLesPlaylists, playlist, id, selectedVideo,
 
   const destroySong = (supSong) => {
     let reponse = confirm("Veux tu supprimer la vidéo ?")
+    const urldel = `/api/v1/songs/${supSong.id}`
     if(reponse){
-    axios.delete(`/api/v1/songs/${supSong.id}`)
+    axios.delete(urldel)
     }
     setTimeout(() => {
       setSong(supSong)
