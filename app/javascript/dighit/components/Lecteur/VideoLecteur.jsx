@@ -74,13 +74,15 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
   const [range, setRange] = useState(100)
   const [volume, setVolume] = useState(1)
 
-  const playerUrl = `https://youtube.com/embed/${video.attributes.url}`
+  const playerUrl = video.attributes.url == "" ? video.attributes.cloud : `https://youtube.com/embed/${video.attributes.url}`
 
   let nextVideo = {}
   let previousVideo = {}
   let tri = {}
   let indexNew = 0
   let previousIndex = 0
+
+  console.log(playerUrl)
 
   const loadSong = () => {
     const playlist_id = video.attributes.playlist_id

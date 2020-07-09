@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const MenuPagePerso = ({handleChange, rechercheYoutube}) => {
+const MenuPagePerso = ({ handleChange, rechercheYoutube, vimeo }) => {
 
 const [recherche, setRecherche] = useState(true)
 const [rechercheValue, setRechercheValue] = useState("")
@@ -23,7 +23,9 @@ const [rechercheValue, setRechercheValue] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    vimeo(rechercheValue)
     rechercheYoutube(rechercheValue)
+
   }
 
   const showRecherche = recherche ? <p onClick={handleRecherche}>Recherche</p> : <form onSubmit={handleSubmit}><input onChange={handleChangeValue} type="text" value={rechercheValue}/></form>

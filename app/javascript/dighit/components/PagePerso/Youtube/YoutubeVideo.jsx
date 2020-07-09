@@ -22,6 +22,7 @@ const YoutubeVideo = ({playlistActual, youtube, selectedVideo, id, addSongToArra
 
   const handleSelected = () => {
     selectedVideo(selected)
+    console.log(selected)
   }
 
   const list = youtube.map((data) => {

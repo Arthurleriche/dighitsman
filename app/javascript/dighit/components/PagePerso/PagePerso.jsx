@@ -7,9 +7,9 @@ import MenuPagePerso from './Menu/MenuPagePerso'
 import MesSons from './Menu/MesSons'
 import MesPlaylists from './Menu/MesPlaylists'
 import YoutubeVideo from './Youtube/YoutubeVideo';
+import VimeoList from './Vimeo/VimeoList'
 import Lecteur from '../Lecteur/Lecteur'
 import AjoutRecent from './AjoutRecent'
-
 
 
 const PagePerso = ({id}) =>  {
@@ -23,6 +23,7 @@ const PagePerso = ({id}) =>  {
   const [user, setUser] = useState({})
   const [menu, setMenu] = useState("playlists");
   const [youtube, setYoutube] = useState([]);
+  const [vimeoVid, setVimeoVid] = useState([])
   const [loadYoutube, setLoadYoutube] = useState(false)
   const [video, setVideo] = useState("")
   const [actual, setActual] = useState("")
@@ -36,6 +37,7 @@ const PagePerso = ({id}) =>  {
 
   const selectedVideo = (selectedvideo) => {
     setVideo(selectedvideo)
+    console.log(selectedVideo)
   }
 
   const rechercheYoutube = async (search) => {
@@ -48,6 +50,30 @@ const PagePerso = ({id}) =>  {
     setYoutube(response.data.items);
     setLoadYoutube(true)
   }
+
+  const Vimeo = require('vimeo').Vimeo;
+  const vimeo = (search) => {
+  const client = new Vimeo("c58df2da4ba05e904dfca0a5b5c13b1b1e2e87a7","ZJx+YvMNDElCtf2vo2G5UGPGHifVtWy0/ubeLKJOWVu9yKvD7+bAB4amM4maee9ncg7Z/hLd1A7CDdThBzFPBxq829LNxMEeUqlApWwVDqficaW+8YOzhUK5XvqOl7lE", "8c8875b588fa09132271810eaede1ddc");
+    client.request({
+        path: '/videos',
+        query: {
+          page: 1,
+          per_page: 10,
+          query: `${search}`,
+          sort: 'relevant',
+          direction: 'asc'
+        }
+      }, function (error, body) {
+        if (error) {
+          alert("pas de video trouver sur vimeo, désolé")
+        } else {
+          setVimeoVid(body.data)
+          console.log(body.data)
+        }
+      })
+    setLoadYoutube(true)
+    }
+
 
   useEffect(() => {
     const urlSongs = '/api/v1/songs'
@@ -92,12 +118,16 @@ const PagePerso = ({id}) =>  {
       <MenuPagePerso
         handleChange={handleChange}
         rechercheYoutube={rechercheYoutube}
+        vimeo={vimeo}
       />
       {LecteurPlayer}
         {loadYoutube ?
           <div className="container-menu-youtube">
             {Menu()}
+            <div>
             <YoutubeVideo youtube={youtube} selectedVideo={selectedVideo} id={id} playlistActual={playlistActual} addSongToArray={addSongToArray}/>
+            <VimeoList vimeoVid={vimeoVid} selectedVideo={selectedVideo} id={id} playlistActual={playlistActual} addSongToArray={addSongToArray}/>
+            </div>
           </div>
         :
           <div className="container-menu">

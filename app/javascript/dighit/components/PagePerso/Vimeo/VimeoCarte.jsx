@@ -6,7 +6,7 @@ import Popup from "reactjs-popup";
 import AddPlaylist from '../Menu/AddPlaylist'
 
 
-const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addSongToArray }) => {
+const VimeoCarte = ({selectedVideo, playlistActual, resultat, handleSelected, id, addSongToArray }) => {
 
   const [playlists, setPlaylists] = useState([])
   const [playlist, setPlaylist] = useState(null)
@@ -19,6 +19,7 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addS
     playlist_id: null,
     score: null
   })
+  const [selected, setSelected] = useState({})
   const [actual, setActual] = useState()
   const [newSong, setNewSong] = useState("")
 
@@ -27,34 +28,40 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addS
     axios(url)
       .then(res => setPlaylists(res.data.data))
       .catch()
+    setSelected({
+      attributes: {
+        cloud: resultat.link,
+        title: resultat.name,
+        description: resultat.description,
+        url: ""
+    }})
      },[]);
 
-  useEffect(() => {
-    video(resultat)
-  },[resultat]);
-
-  useEffect(() => {
-    setSong({
-      avg_score: null,
-      url: resultat.id.videoId,
-      title: resultat.snippet.title,
-      description: resultat.snippet.description,
-      img: resultat.snippet.thumbnails.high.url,
-      user_id: id,
-      playlist_id: playlist,
-    })
-  },[playlist])
+  // useEffect(() => {
+  //   setSong({
+  //     avg_score: null,
+  //     url: '',
+  //     title: resultat.name,
+  //     description: resultat.description,
+  //     img: resultat.pictures.sizes[4].link,
+  //     user_id: id,
+  //     playlist_id: ,
+  //     cloud: resultat.link
+  //   })
+  // },[playlist])
 
   const selectedPlaylist = (playlist_id) => {
     setSong({
       avg_score: null,
-      url: resultat.id.videoId,
-      title: resultat.snippet.title,
-      description: resultat.snippet.description,
-      img: resultat.snippet.thumbnails.high.url,
+      url: '',
+      title: resultat.name,
+      description: resultat.description,
+      img: resultat.pictures.sizes[4].link,
       user_id: id,
       playlist_id: playlist_id,
+      cloud: resultat.link
     })
+    console.log(song)
   }
 
   const addPlaylistToArray = (playlist) => {
@@ -73,7 +80,8 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addS
       img: '',
       user_id: null,
       playlist_id: null,
-      score: null
+      score: null,
+      cloud: ''
     })
     },1000)
   }
@@ -94,14 +102,19 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addS
     return <a key={data.id} onClick={() => selectedPlaylist(data.id)} id="name-playlist">{data.attributes.name}</a>
   })
 
+
+    const selectVideo = () => {
+    selectedVideo(selected)
+    console.log(selected)
+  }
+
   return (
     <div id="carte-youtube" >
-
-      <div id="image" onClick={handleSelected}>
-        <img src={resultat.snippet.thumbnails.high.url} alt=""/>
+      <div id="image" onClick={selectVideo}>
+        <img src={resultat.pictures.sizes[4].link} alt=""/>
       </div>
-      <div id="carte-description-youtube" onClick={handleSelected}>
-        <p>{resultat.snippet.title}</p>
+      <div id="carte-description-youtube" onClick={selectVideo}>
+        <p>{resultat.name}</p>
       </div>
         <Popup trigger={<button > ajoute moi à une de tes playlists</button>}  position="left">
           <div id="popup-add-to-playlists">
@@ -118,4 +131,4 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addS
   )
 }
 
-export default CarteYoutube
+export default VimeoCarte
