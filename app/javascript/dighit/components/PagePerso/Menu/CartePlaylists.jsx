@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import TransitionsModal from '../../Popup/TransitionsModal'
 
 const useStyles = makeStyles({
   root: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CartePlaylists = ({songs, playlists, selectedPlaylists, playPlaylist}) => {
+const CartePlaylists = ({selectedVideo, songs, playlists, selectedPlaylists, playPlaylist, playlist, toutesLesPlaylists, id, destroySong, addSong}) => {
   const classes = useStyles();
   const [img, setImg] = useState()
   const [song, setSong] = useState([])
@@ -65,10 +66,10 @@ const CartePlaylists = ({songs, playlists, selectedPlaylists, playPlaylist}) => 
       </CardActionArea>
       <CardActions>
       <div id="icon">
-        <VisibilityIcon onClick={() => selectedPlaylists(playlists)}/>
-      </div>
-      <div id="icon">
         <QueueMusicIcon onClick={() => playPlaylist(playlists.id)}/>
+      </div>
+      <div onClick={() => selectedPlaylists(playlists)} id="icon">
+      <TransitionsModal playlist={playlist} selectedVideo={selectedVideo} toutesLesPlaylists={toutesLesPlaylists} name={name} destroySong={destroySong} addSong={addSong} />
       </div>
       </CardActions>
     </Card>

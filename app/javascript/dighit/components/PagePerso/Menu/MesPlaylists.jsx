@@ -47,6 +47,7 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong, supSong, destroySong 
   const selectedPlaylists = (playlist) => {
     setPlaylist(playlist.id)
     setName(playlist.attributes.name)
+    console.log(playlist)
   }
 
   let tri = []
@@ -62,7 +63,7 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong, supSong, destroySong 
 
 
   const list = playlists.map((data) => {
-    return <CartePlaylists playlists={data} key={data.id} selectedPlaylists={selectedPlaylists} playPlaylist={playPlaylist} songs={songs}/>
+    return <CartePlaylists playlists={data} key={data.id} selectedPlaylists={selectedPlaylists} playPlaylist={playPlaylist} songs={songs}  playlist={playlist} id={id} selectedVideo={selectedVideo} toutesLesPlaylists={toutesLesPlaylists} name={name} destroySong={destroySong} addSong={addSong}/>
   })
 
   const toutesLesPlaylists = () => {
@@ -77,7 +78,6 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong, supSong, destroySong 
           {list}
           </div>
         </div>
-      <SonsPlaylist playlist={playlist} id={id} selectedVideo={selectedVideo} toutesLesPlaylists={toutesLesPlaylists} name={name} destroySong={destroySong} addSong={addSong}/>
     </div>
 
   )
@@ -85,3 +85,5 @@ const MesPlaylists = ({selectedVideo, id, actual, addSong, supSong, destroySong 
 
 
 export default MesPlaylists
+
+      // <SonsPlaylist playlist={playlist} id={id} selectedVideo={selectedVideo} toutesLesPlaylists={toutesLesPlaylists} name={name} destroySong={destroySong} addSong={addSong}/>
