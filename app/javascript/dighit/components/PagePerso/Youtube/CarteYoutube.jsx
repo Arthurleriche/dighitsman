@@ -33,7 +33,19 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addS
     video(resultat)
   },[resultat]);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   setSong({
+  //     avg_score: null,
+  //     url: resultat.id.videoId,
+  //     title: resultat.snippet.title,
+  //     description: resultat.snippet.description,
+  //     img: resultat.snippet.thumbnails.high.url,
+  //     user_id: id,
+  //     playlist_id: playlist,
+  //   })
+  // },[playlist])
+
+  const selectedPlaylist = (playlist_id) => {
     setSong({
       avg_score: null,
       url: resultat.id.videoId,
@@ -41,13 +53,8 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addS
       description: resultat.snippet.description,
       img: resultat.snippet.thumbnails.high.url,
       user_id: id,
-      playlist_id: playlist,
+      playlist_id: playlist_id,
     })
-  },[playlist])
-
-  const selectedPlaylist = (playlist_id) => {
-    setPlaylist(playlist_id)
-    console.log(playlist_id)
   }
 
   const addPlaylistToArray = (playlist) => {
@@ -58,6 +65,17 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addS
     axios.post('/api/v1/songs', song);
     alert('add')
     addSongToArray({attributes: song})
+    setTimeout(() => {
+      setSong({
+      url: '',
+      title: '',
+      description: '',
+      img: '',
+      user_id: null,
+      playlist_id: null,
+      score: null
+    })
+    },1000)
   }
 
   let res = []
@@ -78,13 +96,14 @@ const CarteYoutube = ({playlistActual, resultat, video, handleSelected, id, addS
 
   return (
     <div id="carte-youtube" >
+
       <div id="image" onClick={handleSelected}>
         <img src={resultat.snippet.thumbnails.high.url} alt=""/>
       </div>
       <div id="carte-description-youtube" onClick={handleSelected}>
         <p>{resultat.snippet.title}</p>
       </div>
-        <Popup trigger={<button> ajoute moi à une de tes playlists</button>} position="left">
+        <Popup trigger={<button > ajoute moi à une de tes playlists</button>}  position="left">
           <div id="popup-add-to-playlists">
             <div id="addplaylist">
               {listPlaylist}
