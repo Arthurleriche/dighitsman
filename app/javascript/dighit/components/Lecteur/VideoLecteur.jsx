@@ -161,6 +161,7 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
         onBufferEnd={loadSong}
         onPause={loadSong}
         onReady={loadSong}
+        controls={true}
       />
       </div>
     </Card>
