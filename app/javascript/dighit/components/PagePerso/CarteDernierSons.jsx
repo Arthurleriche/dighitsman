@@ -16,7 +16,6 @@ const CarteDernierSons = ({ allSongs, selectedVideo}) => {
         </div>
         <div id="carte-description">
           <p>{allSongs.attributes.title}</p>
-          <p>Note de la vidéo : {allSongs.attributes.avg_score}</p>
         </div>
     </div>
     </div>

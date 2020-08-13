@@ -2,12 +2,9 @@ import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 
-
-
 import Landing from './Landing'
 import SearchPage from './SearchPage'
 import PagePerso from './PagePerso/PagePerso'
-
 
 export default class App extends React.Component {
   constructor(props){
@@ -19,11 +16,9 @@ export default class App extends React.Component {
       <div>
          <Router history={history}>
            <Route path='/dighit/:userId/search' component={SearchPage} />
-           <Route path='/dighit/:userId/landing' exact render={ ({match}) => <PagePerso id={match.params.userId}/> } />
+           <Route path='/dighit/:userId/landing' render={ ({match}) => <PagePerso id={match.params.userId}/> } />
         </Router>
       </div>
     )
   }
 }
-
-           // <Route path='/dighit/:userId/' exact component={Landing} />

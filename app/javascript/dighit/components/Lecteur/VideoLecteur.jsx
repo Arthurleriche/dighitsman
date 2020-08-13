@@ -82,8 +82,6 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
   let indexNew = 0
   let previousIndex = 0
 
-  console.log(playerUrl)
-
   const loadSong = () => {
     const playlist_id = video.attributes.playlist_id
     tri = lecteurPlaylist.data.filter(song => song.attributes.playlist_id == playlist_id);
@@ -100,7 +98,6 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
     play === false ? setPlay(true) : setPlay(true)
   }
 
-
   const playerPreviousSongs = () => {
     previousVideo === undefined ?  selectedVideo(video) : selectedVideo(previousVideo)
   }
@@ -109,13 +106,14 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
     setPlay(!play)
   }
 
-  const test = () => {
-  }
-
   const rangeVolume = (event, newValue) => {
     setRange(newValue)
     let vol = range/100
     setVolume(vol)
+  }
+
+  const test = () => {
+    console.log("je suis chargé")
   }
 
   return(
@@ -160,7 +158,7 @@ const VideoLecteur = ({ nextSong, playeurLecteur, lecteurPlaylist, video, select
         onEnded={playerNextSongs}
         onBufferEnd={loadSong}
         onPause={loadSong}
-        onReady={loadSong}
+        onReady={test}
         controls={true}
       />
       </div>

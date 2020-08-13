@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import youtube, { baseParams } from '../../api/youtube.jsx'
 import axios from 'axios'
+import {NavLink} from 'react-router-dom'
 
 import CarteUtilisateur from './CarteUtilisateur'
 import MenuPagePerso from './Menu/MenuPagePerso'
@@ -37,7 +38,6 @@ const PagePerso = ({id}) =>  {
 
   const selectedVideo = (selectedvideo) => {
     setVideo(selectedvideo)
-    console.log(selectedVideo)
   }
 
   const rechercheYoutube = async (search) => {
@@ -68,7 +68,6 @@ const PagePerso = ({id}) =>  {
           alert("pas de video trouver sur vimeo, désolé")
         } else {
           setVimeoVid(body.data)
-          console.log(body.data)
         }
       })
     setLoadYoutube(true)
@@ -101,17 +100,16 @@ const PagePerso = ({id}) =>  {
 
 
   const test = (event) => {
+    navigator.geolocation.getCurrentPosition(function(position) {
+    console.log(position)
+    });
   }
-
-  const tri = (a, b) => {
-   return (a - b)
-  }
-
 
   const LecteurPlayer = video === "" ? <div></div> : <Lecteur video={video} id={id} selectedVideo={selectedVideo}/>
 
   return (
     <Fragment>
+    <NavLink to="www.google.com">landing</NavLink>
     <button onClick={test}>test</button>
       <CarteUtilisateur user={user}/>
       <AjoutRecent allSongs={allSongs} selectedVideo={selectedVideo}/>

@@ -103,9 +103,8 @@ const VimeoCarte = ({selectedVideo, playlistActual, resultat, handleSelected, id
   })
 
 
-    const selectVideo = () => {
+  const selectVideo = () => {
     selectedVideo(selected)
-    console.log(selected)
   }
 
   return (
